@@ -187,11 +187,13 @@ defaults:
       comments: true
       share: true
       related: true
+      read_time: true
   - scope:
       path: "_posts/gav"
       type: "posts"
     values:
       layout: single
+      read_time: true
       author_profile: true
       author: Gavin Brennan
       comments: true
