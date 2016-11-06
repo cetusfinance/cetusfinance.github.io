@@ -148,7 +148,7 @@ is ready for some actual code in it.
 
 Head over to 
 
-https://github.com/cetusfinance/qwack if you want to see the current state of the builds and coverage. Feel free while you are there to add things
+[Qwack Repo](https://github.com/cetusfinance/qwack) if you want to see the current state of the builds and coverage. Feel free while you are there to add things
 you would like to see to the issues page, or join us on Gitter!
 
 The next article you see will be just coding we promise...!
