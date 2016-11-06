@@ -19,6 +19,7 @@ or if the data is presorted. This is really just a shortcut because we know that
 the cycles checking/resorting.
 
 Once we have copied (or not) the arrays and done any sorting we calculate the slopes between each of our x points with
+
 ``` csharp
 var slopes = new double[_xValues.Length - 1];
 for (int i = 0; i < slopes.Length; i++)
@@ -26,11 +27,13 @@ for (int i = 0; i < slopes.Length; i++)
   slopes[i] = (y[i + 1] - y[i]) / (x[i + 1] - x[i]);
 }
 ```
+
 This precalculation is used under the assumption that we are going to do more interpolations than the number of pillars. I think
 this is a pretty reasonable assumption considering most use cases in finance.
 
 This leaves the actual interpolation. Because we have the slopes we need to find the index of the highest pillar that is less than
 the value we are interpolating (unless that is < the smallest pillar in which case we just want that). Something like this will do
+
 ``` csharp
 var index = Array.BinarySearch(_xValues, x);
 if (index < 0)
@@ -39,7 +42,9 @@ if (index < 0)
 }
 return Min(Max(index, 0), _xValues.Length - 2);
 ```
+
 This uses the binary search function which is the standard procedure in this case. And finally we have the calculation of the value
+
 ``` csharp
 public double Interpolate(double x)
 {
@@ -74,6 +79,7 @@ So here is our solution layout under the test folder now
 ![solution layout](/images/PerformanceCounts/Testfolder.png)
 
 Now we will setup the framework in the console application to run the tests. First the test configuration which looks like this
+
 ``` json
 "dependencies": {
   "BenchmarkDotNet": "0.9.9"
@@ -102,13 +108,16 @@ They will provide us vital information about memory allocations and JIT inlining
 
 Next we setup a basic parameter that we can pass in the console arguments that allows us to run a single test or all in one go. This means
 we don't need a new project for each benchmark but also allows us to run a single test (performance tests can take a while).
+
 ``` csharp
 private static readonly Dictionary<string, Type> _benchmarks = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
 {
   ["LinearInterp"] = typeof(LinearInterpolationBenchmarks),
 };
 ```
+
 This currently has a single benchmark in it, however we will be adding more as we go along. Next is the code to actually run the benchmark
+
 ``` csharp
 public static void Main(string[] args)
 {
@@ -131,25 +140,31 @@ public static void Main(string[] args)
   BenchmarkRunner.Run(_benchmarks[args[0]]);
 }
 ```
+
 The key to the above code is calling the BenchmarkRunner.Run passing in the type of the benchmark we want to run. All pretty simple
 so lets jump over to the actual benchmark.
 
 As we currently only have a single interpolator type we will start with that, first we put in the correct attribute for setup
+
 ``` csharp
 [Config(typeof(ConfigSetup))]
 public class LinearInterpolationBenchmarks
 ```
+
 We will come to the ConfigSetup class shortly but for now just know this requires the benchmark to be run with the settings in that
 configuration class
+
 ``` csharp
 public const int NumberOfInterpolatorCreates = 100;
 private double[] xValues;
 private double[] yvalues;
 ```
+
 The const is the number of times we will loop internally to the benchmark method. We will also tell the benchmark this and it will
 divide our result by this number to give us a result per iteration of the loop. The next two members are to store the input values
 we are going to test. We want to set these up outside the actual benchmark as this is not part of our test. To do this we make a 
 setup method like so
+
 ``` csharp
 [Setup]
 public void Setup()
@@ -168,16 +183,19 @@ public void Setup()
 We once again use an attribute to tell the benchmark to run this before each benchmark. We setup the y values based on some random 
 numbers but because of the fixed seed they should be the same "random" numbers each time to take out any difference that might change
 any results between runs. The pillar parameter is setup here
+
 ``` csharp
 [Params(1000, 5000)]
 public int Interpolations { get; set; }
 [Params(10, 20)]
 public int Pillars { get; set; }
 ```
+
 By using another attribute the benchmark will run all combinations of these and output the results in a table for us to get an idea
 of our performance across a couple of different scenarios.
 
 Now onto the actual benchmark, it's pretty simple really 
+
 ``` csharp
 [Benchmark(Baseline = true, OperationsPerInvoke = NumberOfInterpolatorCreates)]
 public void StandardBinarySearch()
@@ -195,6 +213,7 @@ public void StandardBinarySearch()
   }
 }
 ```
+
 The attribute tells the benchmark the number of iterations as explained above and that this is our "baseline" which means any further
 added test will be given statics in relation to this test. The rest is pretty easy to follow, now we build in release mode and run from
 the console (after plugging my laptop into the power and turning everything up to 11!).
