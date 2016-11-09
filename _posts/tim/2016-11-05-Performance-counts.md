@@ -3,9 +3,9 @@ title: Performance counts
 excerpt: "Getting some useful code in there, but is it good enough?"
 category: "tim"
 header:
-  overlay_image: diggingIn.jpg
+  overlay_image:  PerformanceCounts/header.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: diggingInTeaser.jpg
+  teaser: PerformanceCounts/teaser.jpg
 tags: [testing, interpolation, testing, vector, performance, .net]
 ---
 
