@@ -2,7 +2,5 @@
 main:
   - title: "Blog"
     url: /blog
-  - title: "Contact"
-    url: /contact
   - title: "About"
     url: /about
