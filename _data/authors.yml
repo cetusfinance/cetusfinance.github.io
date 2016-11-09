@@ -1,7 +1,7 @@
 Tim Seaward:
   name: "Tim Seaward"
   uri: "cetus.io/tim"
-  email: "tim@cetusfinance.com"
+  email: "tim@cetus.io"
   bio: "Performance and clarity are not mutally exclusive."
   avatar: "tims-bio.jpg"
   twitter: "drawaes"
@@ -11,8 +11,9 @@ Tim Seaward:
 
 Gavin Brennan:
   name: "Gavin Brennan"
-  email: "gav@cetusfinance.com"
-  bio: "I ordered what?"
+  uri: "cetus.io/gav"
+  email: "gav@cetus.io"
+  bio: "????????????"
   avatar: "gavs-bio.jpg.jpg"
   twitter: "gavinBrennan99"
   github: "gavbrennan"
