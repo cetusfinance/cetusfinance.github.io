@@ -11,6 +11,6 @@ header:
   overlay_filter: rgba(50, 50, 50, 0.5)
 ---
 
-{% for post in site %}
+{% for post in site.posts %}
   {% include archive-single.html type="grid" %}
 {% endfor %}
