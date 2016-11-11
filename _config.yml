@@ -7,9 +7,9 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Making the Complex Simple"
+title                    : "Cetus Finance"
 title_separator          : "-"
-name                     : "Cetus Finance"
+name                     : "Cetus.io"
 description              : "Making the complex simple"
 url                      : "http://cetus.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
