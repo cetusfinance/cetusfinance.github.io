@@ -142,5 +142,5 @@ Last of all unit tests have been added, they certainly don't [cover](https://cov
 all the future calculations more should be added. However for now we have the basic functions we need to move on, I am sure we will be revisiting dates in the future 
 having already raised three [tasks](https://github.com/cetusfinance/qwack/labels/DateFunctions) myself already.
 
-Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products!   
+Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one more post and then we get to the good stuff!   
  
