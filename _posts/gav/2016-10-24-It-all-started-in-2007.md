@@ -24,6 +24,8 @@ What became obvious, however, as the financial crisis wore on, is that that a ma
 There are many possible explanations for this but at the time, with banks floundering and failing all around, the idea that a deposit with a longer maturity required a higher 
 rate to compensate an investor due to increased credit and liquidity risk, seemed reasonable.
 
+![The Great Bear](images/itallstarted/bear.jpg)
+
 So what challenges did this introduce?  Firstly we needed to account for this basis with a more complex setup. 
 A book of mixed USD interest rate derivatives now needed separate curves for the various LIBOR tenors (1m, 3m, 6m and 12m at least) and more than 
 likely a curve for discounting under a standard CSA (a curve for the Federal Funds effective rate). So that’s at least five times the work but really not so hard, right?
