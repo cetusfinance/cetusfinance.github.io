@@ -8,3 +8,6 @@ _site
 codekit-config.json
 node_modules
 npm-debug.log*
+.vscode/settings.json
+.vscode/spell.json
+.vscode/spellchecker.json

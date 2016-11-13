@@ -67,7 +67,7 @@ more detailed code quality tracking but at the moment it is difficult to integra
 msbuild for projects we will wait until this takes place and try to integrate it at that point.
 
 So next we need to enable a bunch of integrations, and this is where modern day development, community, and the cloud really shine.
-It means your OSS project can have a true environment that outshines most corporate development enviroments around.
+It means your OSS project can have a true environment that outshines most corporate development environments around.
 
 ![our echo system](/images/diggingIn/ecosystem.png)
 
@@ -75,12 +75,12 @@ Our Ecosystem
 
 1. AppVeyor for building and running our tests on windows, as well as building our nuget and code coverage which we will see shortly
 2. Coveralls for uploading our code coverage reports to and keeping a history of those
-3. Gitter to provide a chat room where hopefull you and others will join to talk about ideas/improvements we can make
+3. Gitter to provide a chat room where hopefully you and others will join to talk about ideas/improvements we can make
 4. MyGet to upload our CI build nuget packages to
 5. Travis CI which will provide our OSX and Ubuntu builds and tests to make sure we stay Xplat all the way
 
-The best thing about all of this, for our opensource project it's free! I can see why they do this other than the warm fuzzies of helping opensource.
-I would definitly recommend all/any of these sites to any future client that wants to get serious about builds and code quality and doesn't have a massive
+The best thing about all of this, for our open source project it's free! I can see why they do this other than the warm fuzzies of helping opensource.
+I would definitely recommend all/any of these sites to any future client that wants to get serious about builds and code quality and doesn't have a massive
 internal department that supplies all these services.
 
 My configuration for travis and for AppVeyor can be seen over at the repo,
@@ -130,7 +130,7 @@ encrypted token concept for our API token here. We will upload to nuget as well 
 releasing before we move onto that.
 
 So finally we have all of this up and running I quickly added a failing test and went about adding badges for it, because without badges what sort
-of opensource project are you really?
+of open-source project are you really?
 
 ``` markdown
 [![Build Status](https://travis-ci.org/cetusfinance/qwack.svg?branch=master)](https://travis-ci.org/cetusfinance/qwack)
@@ -143,7 +143,7 @@ A modern quantitative finance framework that makes the complex simple
 
 ![readme file with badges](/images/diggingIn/readme.png)
 
-so now our readme file has a bunch of badges for now and as you can see failing builds. So I faked the test passing and now I sleep knowing our project
+so now our readme.md file has a bunch of badges for now and as you can see failing builds. So I faked the test passing and now I sleep knowing our project
 is ready for some actual code in it.
 
 Head over to 

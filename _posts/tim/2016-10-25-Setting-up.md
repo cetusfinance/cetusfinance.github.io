@@ -1,16 +1,33 @@
 ---
 title: Setting Up
-excerpt: "Starting an opensource project."
+excerpt: "Starting an opensource project - Qwack"
 category: "tim"
 header:
   overlay_image: start.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
   teaser: startTeaser.png
-tags: [setup, CI, testing, oss, .net]
+tags: [setup, CI, testing, oss, .net, qwack]
 ---
 
+# What?
+An opensource quant library. Simple right? We want it to support both running on servers as well as directly in a number of UI's 
+such as an excel plugin as well as a modern Web/Chromium UI. We want it to cover a broard range of instruments, and products and make
+it accessible.
+
+# Why?
+Quant libraries have an interesting history. There are great math libraries out there, and some quant libraries but they are not really "all there".
+When looking around none of them seemed to provide a whole package that would allow you to use the very same code from a trader or quants excel straight through
+to the server, and be able to perform and be a proper type checked and tested solution. As a company we have this need for some of our ideas we have, so rather than
+build it and have another closed source solution, why not be the first to make it opensource?
+
+# How?
+We are going to write the software in a feature by feature manor. Not adding "potential things we need", or as few as possible without a usecase. If you have a usecase you
+are interested in please do add an issue, we will be looking for things to add. Even better feel free to write some code! If you don't want to do that we would still love you 
+to add issues for usecases or features you would like to see. We will be using .Net Core and making our entire library cross platform.
+
 So here we are looking to write an opensource quant library in .Net Core. 
-Upfront we have some basic requirements for the project, without which it is just a learning excerise at best and at worst completely pointless.
+Upfront we have some basic requirements for the project, without which it is just 
+a learning excerise at best and at worst completely pointless.
 
 * Performance matters and needs to be baked in from day one
 * Xplat or cross platform is becoming extremely important
