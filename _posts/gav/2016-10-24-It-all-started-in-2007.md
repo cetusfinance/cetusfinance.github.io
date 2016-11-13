@@ -3,9 +3,9 @@ title: It all started in 2007
 excerpt: "When the world become so much more complex"
 category: "gav"
 header:
-  overlay_image: itallstarted/teaser.jpg
+  overlay_image: itallstarted/header.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: itallstarted/header.jpg
+  teaser: itallstarted/teaser.jpg
 tags: [fx, ir, solving]
 ---
 
