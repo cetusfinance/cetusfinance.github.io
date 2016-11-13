@@ -26,9 +26,7 @@ rate to compensate an investor due to increased credit and liquidity risk, seeme
 
 >When the music stops in terms of liquidity, things will get complicated. But as long as the music is playing, you've got to get up and dance. We're still dancing. - Chuck Prince, Citigroup
 
-<div style="float: right">
-  ![The Great Bear](/images/itallstarted/bear.jpg)
-</div>
+![The Great Bear](/images/itallstarted/bear.jpg){: .align-left}
 So what challenges did this introduce?  Firstly we needed to account for this basis with a more complex setup. 
 A book of mixed USD interest rate derivatives now needed separate curves for the various LIBOR tenors (1m, 3m, 6m and 12m at least) and more than 
 likely a curve for discounting under a standard CSA (a curve for the Federal Funds effective rate). So that’s at least five times the work but really not so hard, right?
