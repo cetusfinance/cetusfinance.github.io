@@ -77,15 +77,18 @@ var myOtherFrequency = 2.Bd();
 ```
 
 and so on. This makes writing big blocks of code (at this stage only tests but still) much clearer so instead of
+
 ``` csharp
 Frequency[] swapTenors = { new Frequency(3, DatePeriodType.Y), new Frequency(4, DatePeriodType.Y), new Frequency(5, DatePeriodType.Y) };
 ```
 We would now have something that looks like
+
 ``` csharp
 Frequency[] swapTenors = { 3.Years(), 4.Years(), 5.Years() };  
 ```
 
 The other method available is to use a string like
+
 ``` csharp
 string[] swapTenors = { "18m", "2y", "3y", "4y", "5y", "7y", "10y", "15y", "20y" };
 ```
@@ -94,6 +97,7 @@ in tests but one of the reasons you "pay the penalty" of less flexibility of a s
 This method will of course need to be used when parsing/deserializing from text based formats later on.
 
 So now we have periods, frequencies and calendars we need to look at rolling "rules". Like all good "standards" there are plenty of rules. We have included
+
 1. Following - move to the next one
 2. Previous - move to the previous business day
 3. Modified Following - Same as following unless it will go into a new month, in which case roll back
@@ -110,6 +114,7 @@ So now we have periods, frequencies and calendars we need to look at rolling "ru
 So that about covers our needs for now, as always feel free to add an issue if there is one we have left off or you might find useful!
 
 Now that is out of the way we need an enumeration of day counts. So we have come up with the following
+
 1. Act/360
 2. Act/365
 3. Act/Act ISDA standards
@@ -129,6 +134,7 @@ The rest of the code that is important is in the "DateExtensions" class. All of 
 We are only using the date portion of the class and may consider a move to [nodatime](http://nodatime.org/) by the brilliant John Skeet further down the line.
 
 We have a selection of the functions below
+
 1. d.GetNextImmDate() - also previous available used for Internal Money Market Dates [IMM Dates](https://en.wikipedia.org/wiki/IMM_dates)
 2. d.BusinessDaysInPeriod(endDate, calendar) - used to return a list of dates that are business dates between 2 inclusive dates
 3. d.CalculateYearFraction(endDate, dayCountBasis) - returns a double with the fraction
