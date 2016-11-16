@@ -1,6 +1,6 @@
 ---
-title: Setting Up
-excerpt: "Starting an opensource project - Qwack"
+title: Off the starting line?
+excerpt: "What/When/Why/Who..."
 category: "tim"
 header:
   overlay_image: start.jpg
@@ -9,29 +9,38 @@ header:
 tags: [setup, CI, testing, oss, .net, qwack]
 ---
 
+# Who?
+I am Tim, and the other person you will see writing around here is Gav. We both meet in the city of London a number of years ago and have 
+coded together on and off just for fun for a number of years. We have had some great ideas (and not so great!). We thought that people out
+there might have some interest in these many and varied late night coding topics and discussions and we thought that the best format to bring
+this to you was in blog format. It will be a mix of mathmatics and coding related topics and will revolve heavily around writing C# and high
+performance code to solve complex real world problems, in the simplest matter possible. 
+
+
 # What?
-An opensource quant library. Simple right? We want it to support both running on servers as well as directly in a number of UI's 
-such as an excel plugin as well as a modern Web/Chromium UI. We want it to cover a broard range of instruments, and products and make
-it accessible.
+An opensource set of code and acommpaning articles discussing everything from making a high performance set of services
+to quant functions in a managed library. Simple right? We want it to support both running on servers as well as directly in a 
+number of UI's such as an excel plugin (everyone loves a good excel plugin) as well as a modern Chromium UI. 
+We want it to cover a broard range of topics, theories and make it accessible.
 
 # Why?
 Quant libraries have an interesting history. There are great math libraries out there, and some quant libraries but they are not really "all there".
 When looking around none of them seemed to provide a whole package that would allow you to use the very same code from a trader or quants excel straight through
-to the server, and be able to perform and be a proper type checked and tested solution. As a company we have this need for some of our ideas we have, so rather than
-build it and have another closed source solution, why not be the first to make it opensource?
+to the server, and be able to perform and be a proper type checked and tested solution. Documentation and understanding for these seems to be hard to come by.
+Maybe it's impossible to do, maybe not.. but why not try it might be fun!
 
 # How?
 We are going to write the software in a feature by feature manor. Not adding "potential things we need", or as few as possible without a usecase. If you have a usecase you
 are interested in please do add an issue, we will be looking for things to add. Even better feel free to write some code! If you don't want to do that we would still love you 
 to add issues for usecases or features you would like to see. We will be using .Net Core and making our entire library cross platform.
 
-So here we are looking to write an opensource quant library in .Net Core. 
+So here we are looking to write an opensource code library in .Net Core. 
 Upfront we have some basic requirements for the project, without which it is just 
 a learning excerise at best and at worst completely pointless.
 
 * Performance matters and needs to be baked in from day one
 * Xplat or cross platform is becoming extremely important
-* Easy deployment and the ability to plug into diverse datasources
+* Easy deployment and the ability to plug into diverse data sources
 * Code quality needs to be high from the start and needs to be maintained
 * A community and a policy of openness from day one
 * Automate as much of the mundane as possible

@@ -14,7 +14,7 @@ tags: [fx, ir, solving]
 Prior to 2007, the world of quant finance relied upon an assumption which made everyone’s lives much easier – each currency has a single interest rate curve 
 which could be used for forecasting and discounting any rates or cashflows in that currency. 
 This wasn’t just some ill thought-out theory, it was validated by many years of practice and the problems contained in the
- assumption only became obvious as 2007 drew to a close.
+assumption only became obvious as 2007 drew to a close.
 
 The one curve model assumes that you can have a single curve for a currency (say USD) and that rates for various tenors of index (say LIBOR 3-monh and LIBOR 6-month) 
 can be queried from the same curve.  This means you can use a mixture of instruments referencing different tenors to build the curve and as there is only a single curve to fit, 
@@ -26,7 +26,6 @@ rate to compensate an investor due to increased credit and liquidity risk, seeme
 
 >When the music stops in terms of liquidity, things will get complicated. But as long as the music is playing, you've got to get up and dance. We're still dancing. - Chuck Prince, Citigroup
 
-![The Great Bear](/images/itallstarted/bear.jpg){: .align-left}
 So what challenges did this introduce?  Firstly we needed to account for this basis with a more complex setup. 
 A book of mixed USD interest rate derivatives now needed separate curves for the various LIBOR tenors (1m, 3m, 6m and 12m at least) and more than 
 likely a curve for discounting under a standard CSA (a curve for the Federal Funds effective rate). So that’s at least five times the work but really not so hard, right?
