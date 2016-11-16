@@ -1,17 +1,17 @@
 Tim Seaward:
   name: "Tim Seaward"
-  uri: "cetus.io/tim"
+  uri: "http://cetus.io/tim"
   email: "tim@cetus.io"
-  bio: "Performance and clarity are not mutally exclusive."
+  bio: "Performance and clarity are not mutually exclusive."
   avatar: "tims-bio.jpg"
-  twitter: "drawaes"
+  twitter: "TimSeaw"
   github: "drawaes"
   location: "London"
 
 
 Gavin Brennan:
   name: "Gavin Brennan"
-  uri: "cetus.io/gav"
+  uri: "http://cetus.io/gav"
   email: "gav@cetus.io"
   bio: "????????????"
   avatar: "gavs-bio.jpg.jpg"

@@ -9,7 +9,7 @@ header:
 tags: [rates, fixed income, ir, .net]
 ---
 
-As described in previous posts we are going to tackle the idea of building rates curves first.
+As described in previous posts by Gav we are going to tackle the idea of building rates curves first.
 In order to do that the first thing we need is a number of date functions to allow us to generate
 schedules do day counts, year fractions and all the things needed to price fixed income product.
 
