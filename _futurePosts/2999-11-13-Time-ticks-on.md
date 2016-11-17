@@ -142,11 +142,15 @@ We have a selection of the functions below
 5. d.NthSpecificWeekDay(dayOfWeek) - Returns for instance the 2nd Monday of a month, there is also a helper that wraps it for the third Wednesday as it is often used
 6. d.IfHolidayRoll(various) - Used to roll forward/back or based on the various rules above if the date supplied is not a good business day for the calendar
 
-Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of the functions, it is the "heart" of the library.
+Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of the 
+functions, it is the "heart" of the library.
 
-Last of all unit tests have been added, they certainly don't [cover](https://coveralls.io/builds/8790953) everything but they are a start and as it is a cornerstone of
-all the future calculations more should be added. However for now we have the basic functions we need to move on, I am sure we will be revisiting dates in the future 
+Last of all unit tests have been added, they certainly don't [cover](https://coveralls.io/builds/8790953) everything but they 
+are a start and as it is a cornerstone of
+all the future calculations more should be added. However for now we have the basic functions we need to move on, I am sure we 
+will be revisiting dates in the future 
 having already raised three [tasks](https://github.com/cetusfinance/qwack/labels/DateFunctions) myself already.
 
-Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one more post and then we get to the good stuff!   
+Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one more post and 
+then we get to the good stuff!   
  
