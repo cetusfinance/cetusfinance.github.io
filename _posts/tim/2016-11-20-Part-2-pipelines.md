@@ -60,5 +60,5 @@ Even if you could pool and reset the SslStream you would still have the authoriz
 this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards compatiblity these changes
 to the API really aren't feasible. So in summary this is how things are, and where I thought they should be
 
-![/images/concept.png](Diagram of SslStream vs the proposed)
+![Diagram of SslStream vs the proposed](/images/pipelines/concept.png)
 
