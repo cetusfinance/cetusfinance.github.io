@@ -9,7 +9,7 @@ header:
 tags: [setup, CI, testing, oss, .net]
 ---
 
-Enough waffle so lets start. First we create a repo in Github, which was the easy bit (the hard bit was the 2 days of trying to name it)
+Enough waffle so lets start. First we create a repo in Github, which was the easy bit (the hard bit was the 2 days of trying to think of a name)
 
 ![Creating the repo](/images/diggingIn/CreateRepo.jpg)
 

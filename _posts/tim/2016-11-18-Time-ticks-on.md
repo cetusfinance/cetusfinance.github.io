@@ -11,14 +11,14 @@ tags: [rates, fixed income, ir, .net]
 
 As described in previous posts by Gav we are going to tackle the idea of building rates curves first.
 In order to do that the first thing we need is a number of date functions to allow us to generate
-schedules do day counts, year fractions and all the things needed to price fixed income product.
+schedules to do day counts, year fractions and all the things needed to price a fixed income product.
 
-So first we have created a separate assembly project called Qwack.Dates. The first step is to make a calendar
+So we have created a separate assembly project called Qwack.Dates. The first step is to make a calendar
 class. It is not very complicated and is more just a container for the holiday/non-trading days for a specific
 calendar. The important details are that we can blank out a specific day of the week always (so you don't have to 
 include weekends, but can customize them for countries that have say Friday to Saturday weekends). We have included
 months you can block out as well, we won't be using this right now but it will be useful when we get to futures that
-don't have specific month maturities later.
+don't have specific month maturities.
 
 The next feature is that calendars can inherit from other calendars. This is useful for common holidays such as easter
 or other relationships (say a state calendar that needs to include all federal holidays in the US). We then have the 
@@ -39,7 +39,7 @@ var combinedCalendar = provider.Collection["nyc+lon"];
 
 We have included a basic calendar file, useful for testing and a basic way to get started in /data/Calendars.json.
 Now that we have calendars we can start to write the date functions themselves. To do that we need the concept of adding and 
-subtracting "periods" from dates. The common one we all know is things like "1y" or "2bd" we have all seen it over and over in finance.
+subtracting "periods" from dates. The common one we all know is things like "1y" or "2bd" we have all seen it over and over.
 To this end we have an enumeration that looks something like
 
 ``` csharp
@@ -65,7 +65,7 @@ provide an = operator, and therefore a !=, Equals(object otherObject), GetHashCo
 using them yet, so we can revisit that at that time.
 
 Initially I wrote a bunch of convinence static functions for commonly used periods such as 0bd, 1bd, 3month, 1year. However I realised that I needed
-more and more of these as I was writing further tests using the framework and it was going to become a mass of these functions. So instead, we added
+more and more of these as I was writing further tests using the framework and it was going to become a mass of these functions. So instead, I added
 some extension methods on the int type to allow a more "fluent" interface for these. The extensions are on the int type, which is something I had to think
 about as I am against needlessly adding extension methods on base classes that show up everywhere. In this case the fact that you have the dates namespace
 in your using will mean that you are interested in using dates, it's not in a "base" namespace so they will override and show up everywhere in your application.
@@ -126,12 +126,13 @@ Now that is out of the way we need an enumeration of day counts. So we have come
 To get a detailed overview of how these are calculated you can get started here [Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). 
 Having finished all of that (and thanks to the great work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!)
 I hope you are getting a picture of why a standarised library is both important and useful. This date handling alone is done over and over on almost every
-finance project we have ever worked on, some libraries provide this (QuantLib is the obvious one) but they tend not to go into all of the details of the 
-various different standards and leave that as an exercise for the user, and math libraries understandably aren't in the business of the strange date functions
-in finance.
+project we have ever worked on, some libraries provide this (QuantLib is the obvious one) but they tend not to go into all of the details of the 
+various different standards and leave that as an exercise for the reader, and math libraries understandably aren't in the business of the strange date functions
+as they aren't mathematical.
 
 The rest of the code that is important is in the "DateExtensions" class. All of them have been written as static extension methods on the DateTime class.
-We are only using the date portion of the class and may consider a move to [nodatime](http://nodatime.org/) by the brilliant John Skeet further down the line.
+We are only using the date portion of the class and may consider a move to [nodatime](http://nodatime.org/) by the brilliant John Skeet further down the line
+but right now learning another way of doing date/time isn't high on my list.
 
 We have a selection of the functions below
 
@@ -153,4 +154,14 @@ having already raised three [tasks](https://github.com/cetusfinance/qwack/labels
 
 Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one more post and 
 then we get to the good stuff!   
- 
+
+P.S. Having had a look and trying to think about it, I am considering making a struct which is basically a datetime with an attached calendar... the reason for this is
+that then you could extend the fluent dates to something like
+
+``` csharp
+var dateWithCal = myDateTime.WithCalendar(usdCalendar);
+
+var newDateWithCal = dateWithCal + 1.Bd();
+```
+
+Any thoughts?
