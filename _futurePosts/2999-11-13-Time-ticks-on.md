@@ -124,7 +124,7 @@ Now that is out of the way we need an enumeration of day counts. So we have come
 7. Unity
 
 To get a detailed overview of how these are calculated you can get started here [Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). 
-Having finished all of that (and thanks to the great work by [Gav](http://cetus.io/gav/) on all of the standards and actually implementing most of them!)
+Having finished all of that (and thanks to the great work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!)
 I hope you are getting a picture of why a standarised library is both important and useful. This date handling alone is done over and over on almost every
 finance project we have ever worked on, some libraries provide this (QuantLib is the obvious one) but they tend not to go into all of the details of the 
 various different standards and leave that as an exercise for the user, and math libraries understandably aren't in the business of the strange date functions
