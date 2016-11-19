@@ -23,8 +23,9 @@ don't have specific month maturities.
 The next feature is that calendars can inherit from other calendars. This is useful for common holidays such as easter
 or other relationships (say a state calendar that needs to include all federal holidays in the US). We then have the 
 ICalendarProvider interface. The idea behind the providers is that they will load calendars from a specific source and then
-provide access directly to the raw calendars loaded from the source as well as a "CalendarCollection". This will provide pre-merged
-calendars for performance reasons, as well as being able to ask for multiple calendars to be merged, an example is below
+provide access directly to the raw calendars loaded from the source as well as a "CalendarCollection". This will provide 
+pre-merged calendars for performance reasons, as well as being able to ask for multiple calendars to be merged, 
+an example is below
 
 ``` csharp
 var provider = CalendarsFromJson.Load(JsonCalendarPath);
@@ -58,18 +59,21 @@ public enum DatePeriodType
 }
 ```
 
-For now that covers all of the functions we need. Then we have something called "Frequency" which contains a "number of periods" and a "period type"
-this is used for most of the date functions to denote step sizes. This was made as a struct as it is just 2 int32 (will fit in a single 64bit register).
-These are passed around a lot, and created and destroyed rapidly so a struct is the right choice here I feel. Because we need to do comparisons we had to
-provide an = operator, and therefore a !=, Equals(object otherObject), GetHashCode. The Equals and GetHashCode could probably be improved but we aren't really
+For now that covers all of the functions we need. Then we have something called "Frequency" which contains a 
+"number of periods" and a "period type"
+this is used for most of the date functions to denote step sizes. This was made as a struct as it is just 2 int32 
+(will fit in a single 64bit register). These are passed around a lot, and created and destroyed rapidly so a struct is 
+the right choice here I feel. Because we need to do comparisons we had to provide an = operator, and therefore a !=, 
+Equals(object otherObject), GetHashCode. The Equals and GetHashCode could probably be improved but we aren't really
 using them yet, so we can revisit that at that time.
 
-Initially I wrote a bunch of convinence static functions for commonly used periods such as 0bd, 1bd, 3month, 1year. However I realised that I needed
-more and more of these as I was writing further tests using the framework and it was going to become a mass of these functions. So instead, I added
-some extension methods on the int type to allow a more "fluent" interface for these. The extensions are on the int type, which is something I had to think
-about as I am against needlessly adding extension methods on base classes that show up everywhere. In this case the fact that you have the dates namespace
-in your using will mean that you are interested in using dates, it's not in a "base" namespace so they will override and show up everywhere in your application.
-The Api now for using these is pretty neat
+Initially I wrote a bunch of convinence static functions for commonly used periods such as 0bd, 1bd, 3month, 1year. 
+However I realised that I needed more and more of these as I was writing further tests using the framework and it was 
+going to become a mass of these functions. So instead, I added some extension methods on the int type to allow a more 
+"fluent" interface for these. The extensions are on the int type, which is something I had to think
+about as I am against needlessly adding extension methods on base classes that show up everywhere. In this case the fact 
+that you have the dates namespace in your using will mean that you are interested in using dates, it's not in a "base" 
+namespace so they will override and show up everywhere in your application. The Api now for using these is pretty neat
 
 ``` csharp
 var myFrequency = 3.Months();
@@ -92,11 +96,13 @@ The other method available is to use a string like
 ``` csharp
 string[] swapTenors = { "18m", "2y", "3y", "4y", "5y", "7y", "10y", "15y", "20y" };
 ```
-which while very succinct, requires string splitting and reading so isn't very efficient. But also has no compile time checking, which is less important 
-in tests but one of the reasons you "pay the penalty" of less flexibility of a statically typed language is to get as much compile time checking as possible.
+which while very succinct, requires string splitting and reading so isn't very efficient. But also has no compile time 
+checking, which is less important in tests but one of the reasons you "pay the penalty" of less flexibility of a statically 
+typed language is to get as much compile time checking as possible.
 This method will of course need to be used when parsing/deserializing from text based formats later on.
 
-So now we have periods, frequencies and calendars we need to look at rolling "rules". Like all good "standards" there are plenty of rules. We have included
+So now we have periods, frequencies and calendars we need to look at rolling "rules". Like all good "standards" there 
+are plenty of rules. We have included
 
 1. Following - move to the next one
 2. Previous - move to the previous business day
@@ -111,7 +117,8 @@ So now we have periods, frequencies and calendars we need to look at rolling "ru
 11. EOM - End of month
 12. ShortFLongMF - Short Following, Long Modified Following, uses two different roll types depending on if a period is a long or short stub period
 
-So that about covers our needs for now, as always feel free to add an issue if there is one we have left off or you might find useful!
+So that about covers our needs for now, as always feel free to add an issue if there is one we have left off or you might 
+find useful!
 
 Now that is out of the way we need an enumeration of day counts. So we have come up with the following
 
@@ -123,16 +130,20 @@ Now that is out of the way we need an enumeration of day counts. So we have come
 6. 30/360 
 7. Unity
 
-To get a detailed overview of how these are calculated you can get started here [Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). 
-Having finished all of that (and thanks to the great work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!)
-I hope you are getting a picture of why a standarised library is both important and useful. This date handling alone is done over and over on almost every
-project we have ever worked on, some libraries provide this (QuantLib is the obvious one) but they tend not to go into all of the details of the 
-various different standards and leave that as an exercise for the reader, and math libraries understandably aren't in the business of the strange date functions
-as they aren't mathematical.
+To get a detailed overview of how these are calculated you can get started here 
+[Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). Having finished all of that (and thanks to the great 
+work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!). 
 
-The rest of the code that is important is in the "DateExtensions" class. All of them have been written as static extension methods on the DateTime class.
-We are only using the date portion of the class and may consider a move to [nodatime](http://nodatime.org/) by the brilliant John Skeet further down the line
-but right now learning another way of doing date/time isn't high on my list.
+I hope you are getting a picture of why a standarised library is both important and useful. 
+This date handling alone is done over and over on almost every project we have ever worked on, some libraries provide 
+this (QuantLib is the obvious one) but they tend not to go into all of the details of the various different standards 
+and leave that as an exercise for the reader, and math libraries understandably aren't in the business of the strange 
+date functions as they aren't mathematical.
+
+The rest of the code that is important is in the "DateExtensions" class. All of them have been written as static 
+extension methods on the DateTime class. We are only using the date portion of the class and may consider a move to 
+[nodatime](http://nodatime.org/) by the brilliant John Skeet further down the line but right now learning another way of 
+doing date/time isn't high on my list.
 
 We have a selection of the functions below
 
@@ -143,20 +154,19 @@ We have a selection of the functions below
 5. d.NthSpecificWeekDay(dayOfWeek) - Returns for instance the 2nd Monday of a month, there is also a helper that wraps it for the third Wednesday as it is often used
 6. d.IfHolidayRoll(various) - Used to roll forward/back or based on the various rules above if the date supplied is not a good business day for the calendar
 
-Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of the 
-functions, it is the "heart" of the library.
+Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of 
+the functions, it is the "heart" of the library.
 
-Last of all unit tests have been added, they certainly don't [cover](https://coveralls.io/builds/8790953) everything but they 
-are a start and as it is a cornerstone of
-all the future calculations more should be added. However for now we have the basic functions we need to move on, I am sure we 
-will be revisiting dates in the future 
-having already raised three [tasks](https://github.com/cetusfinance/qwack/labels/DateFunctions) myself already.
+Last of all unit tests have been added, they certainly don't [cover](https://coveralls.io/builds/8790953) everything but 
+they are a start and as it is a cornerstone of all the future calculations more should be added. However for now we have 
+the basic functions we need to move on, I am sure we will be revisiting dates in the future having already raised three 
+[tasks](https://github.com/cetusfinance/qwack/labels/DateFunctions) myself already.
 
-Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one more post and 
-then we get to the good stuff!   
+Next up.. adding the various classes we actually need to be able to calculate prices on fixed income products, so one 
+more post and then we get to the good stuff!   
 
-P.S. Having had a look and trying to think about it, I am considering making a struct which is basically a datetime with an attached calendar... the reason for this is
-that then you could extend the fluent dates to something like
+P.S. Having had a look and trying to think about it, I am considering making a struct which is basically a datetime with an 
+attached calendar... the reason for this is that then you could extend the fluent dates to something like
 
 ``` csharp
 var dateWithCal = myDateTime.WithCalendar(usdCalendar);

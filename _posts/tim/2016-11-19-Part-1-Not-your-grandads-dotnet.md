@@ -67,6 +67,7 @@ core framework so others could use it, so .net would be faster and better and we
  So the question was posed "Is there anything I can help with?" the resounding response was "SSL/TLS". Seems everyone wanted
  it but no one wanted to tackle it. That is where my journey began, it has been long and isn't over yet!
 
- In the next post, I will try to discuss TLS, the security landscape of the world and where I have got to with TLS in Pipelines.
+ In the next post, I will try to discuss TLS, the security landscape of the world and where I have got to with TLS in 
+ Pipelines.
 
 

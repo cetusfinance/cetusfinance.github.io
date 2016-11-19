@@ -44,6 +44,21 @@ thinking before you have some grounding in the topic. That left one source.... I
 Let's just say they don't make for the most exciting reading, but I was armed with just enough knowledge to be dangerous,
 time to getting started writing a security library how hard could it be?
 
+## SSPI
+
 Pretty quickly I realised why no one wanted to touch this stuff. SSPI was my starting point, and unlike say .net core is 
 certainly isn't open source and the API documentation that is on MSDN is very very old which was a bit of an issue. The
-upside was that SslStream is opensource so I decided that it was time to take a look. 
+upside was that SslStream is opensource so I decided that it was time to take a look. What I found (and is the pattern for
+OpenSsl as well) is that you have a set of security credentials or a context and this contains information like a certificate
+and your settings. This is then used to generate a set of session keys etc and then that session is essentially detached and not
+reliant on the initial credentials.
+
+This is important and one of the reasons that I still believe that SslStream is not the way forward for server side TLS (I am going to 
+stop refering to SSL from now on, it's broken). Sslstream has the concept of making a stream, passing in the upchannel or wrapped stream
+and the certificate etc and carrying on. This leads to a major inefficency, making a authorization context for every conenction.
+Even if you could pool and reset the SslStream you would still have the authorization per connection. There is really no way around
+this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards compatiblity these changes
+to the API really aren't feasible. So in summary this is how things are, and where I thought they should be
+
+![/images/concept.png](Diagram of SslStream vs the proposed)
+
