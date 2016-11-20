@@ -152,10 +152,16 @@ Now that is out of the way we need an enumeration of day counts. So we have come
 7. Unity
 
 To get a detailed overview of how these are calculated you can get started here 
-[Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). Having finished all of that (and thanks to the great 
-work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!). 
+[Day Counts](https://wiki.treasurers.org/wiki/Day_count_conventions). 
 
-I hope you are getting a picture of why a standarised library is both important and useful. 
+Having finished all of that (and thanks to the great 
+work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!). I hope you
+are getting a picture of why a standarised library is both important and useful. 
+
+![Repeat](/images/timetickson/repeat.jpg)
+
+## Leave repetition to the nature
+
 This date handling alone is done over and over on almost every project we have ever worked on, some libraries provide 
 this (QuantLib is the obvious one) but they tend not to go into all of the details of the various different standards 
 and leave that as an exercise for the reader, and math libraries understandably aren't in the business of the strange 
@@ -177,6 +183,10 @@ We have a selection of the functions below
 
 Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of 
 the functions, it is the "heart" of the library.
+
+![Cover](/images/timetickson/coverage.jpg)
+
+## Some cover is always good
 
 Last of all unit tests have been added, they certainly don't [cover](https://coveralls.io/builds/8790953) everything but 
 they are a start and as it is a cornerstone of all the future calculations more should be added. However for now we have 
