@@ -187,6 +187,8 @@ supports during the TLS handshake and that can be negotiated while we negotiate 
 
 ![Crying](/images/pipelines/crying.jpg)
 
+## Now the problems come ...
+
 My problem with getting this to work
 for SSPI, the documentation basically didn't mention it (not the on-line stuff anyway) other than a couple of announcements saying "hey SSPI and SecureChannel support this!"
 of course SslStream didn't support it so that was no help either. But after much digging, hacking and reading obscure websites I found the answer to my problems when you call
