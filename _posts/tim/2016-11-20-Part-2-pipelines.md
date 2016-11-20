@@ -239,6 +239,6 @@ opened 443 on my firewall, punched it through to my laptop and fired up a CDN Ht
 
 ![Success](/images/handshakepassed.jpg)
 
-Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you rewrote a security library as a no one on the internet, learning about
-threats, and of course Xplat and OpenSsl.
+Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you wrote a new security library as a no-one on the internet, learning about
+threats, and of course Xplat-OpenSsl and some benchmarks thrown in for good measure.
 
