@@ -118,7 +118,7 @@ checking, which is less important in tests but one of the reasons you "pay the p
 typed language is to get as much compile time checking as possible.
 This method will of course need to be used when parsing/deserializing from text based formats later on.
 
-![Standards](/images/timetickson/standards.jpg)
+![Standards](/images/timetickson/standard.jpg)
 
 ## Standards never are...
 
