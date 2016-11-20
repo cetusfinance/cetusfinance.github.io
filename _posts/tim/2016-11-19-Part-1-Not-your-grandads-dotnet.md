@@ -9,6 +9,8 @@ header:
 tags: [microsoft, asp.net, core, .net]
 ---
 
+# C#, what you use for fat clients on windows right? Wrong!
+
 One of the reasons I have stuck with .net and made c# the primary
 language I focus on has always been, well the c# language. I just love
 the syntax and the pushing forward in the language development, yet the sense
