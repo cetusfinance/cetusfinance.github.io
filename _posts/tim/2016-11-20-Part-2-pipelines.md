@@ -237,7 +237,7 @@ Once we are done, we set the result of the task completion source to the protoco
 It feels like that was a long winded explination, but believe me it was an even longer journey and many late nights from me... but now we had a working handshake and to confirm it, I 
 opened 443 on my firewall, punched it through to my laptop and fired up a CDN Http/2 test page
 
-![Success](/images/handshakepassed.jpg)
+![Success](/images/pipelines/handshakepassed.jpg)
 
 Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you wrote a new security library as a no-one on the internet, learning about
 threats, and of course Xplat-OpenSsl and some benchmarks thrown in for good measure.
