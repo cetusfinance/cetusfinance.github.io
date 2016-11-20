@@ -28,14 +28,19 @@ for all sorts of scenarios, sockets, files you name it.
 ![Locks](/images/pipelines/lock.jpg)
 
 Onto the SSL/TLS story, when I first started to look at this I probably knew as much as the average developer. A server
-has a certificate that is certified by a known certificate authority. It has a public/private key and it is used by the client
+has a certificate that is certified by a known certificate authority. 
+
+It has a public/private key and it is used by the client
 to make sure the server is who they say they are. This is also then used to perform some sort of "handshake" to agree on a
 key (well actually a set of keys) used to then do all communication from then on. This enables authentication of the server
 (and the client if using client certs although that is less common) and to secure further communications... easy right?
 
 Well yes and no, my basic assumptions were correct, but I figured lets get some background before I just off and port SslStream.
-I thought SslStream has been around for sometime, had Xplat added to it and made in another time. Ben Adams seemed to hint (well more than that)
-at the "allocaty" nature and maybe a fresh look was needed. So then where to start? I always find that it's best if you want
+I thought SslStream has been around for sometime, had Xplat added to it and made in another time. 
+
+Ben Adams seemed to hint [https://github.com/dotnet/corefx/issues/11826](well more than that) at the "allocaty" nature and maybe a fresh look was needed.
+
+So then where to start? I always find that it's best if you want
 to deep-dive something then you go to the source and work up, that way you are less likely to build assumptions into your 
 thinking before you have some grounding in the topic. That left one source.... IETF specs
 
@@ -50,7 +55,9 @@ time to getting started writing a security library how hard could it be?
 
 Pretty quickly I realised why no one wanted to touch this stuff. SSPI was my starting point, and unlike say .net core is 
 certainly isn't open source and the API documentation that is on MSDN is very very old which was a bit of an issue. The
-upside was that SslStream is opensource so I decided that it was time to take a look. What I found (and is the pattern for
+upside was that SslStream is opensource so I decided that it was time to take a look. 
+
+What I found (and is the pattern for
 OpenSsl as well) is that you have a set of security credentials or a context and this contains information like a certificate
 and your settings. This is then used to generate a set of session keys etc and then that session is essentially detached and not
 reliant on the initial credentials.
@@ -156,9 +163,11 @@ convenience, however if you are writing an upper library that has a lot of initi
 results you may await the handshake directly.
 
 Internally the handshake method simply does 
+
 ``` csharp  
 return _handShakeCompleted?.Task ?? DoHandShake();
-````
+```
+
 which will return straight away if the handshake has been done before, using a cached task (via a task completion source) or it will call the DoHandShake method.
 That method is where the real work starts with both Pipelines and the TLS libraries.
 
