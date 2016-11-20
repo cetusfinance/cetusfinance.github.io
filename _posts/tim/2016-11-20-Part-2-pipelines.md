@@ -193,13 +193,16 @@ My problem with getting this to work
 for SSPI, the documentation basically didn't mention it (not the on-line stuff anyway) other than a couple of announcements saying "hey SSPI and SecureChannel support this!"
 of course SslStream didn't support it so that was no help either. But after much digging, hacking and reading obscure websites I found the answer to my problems when you call
 AcceptSecurityContext (for the server side) or InitializeSecurityContextW(for the client side) you have to pass in buffers with your data you want to send to be processed.
+
 In the case of a client normally you would send a null pointer for the first request, however with ALPN you need to send in a single buffer with your Extension information.
 On the server side you would normally send in two buffers, one being the data from the client and the second an empty token, used for messages to send to the client regarding
 issues with the connection, however in this case we use what would normally be an empty buffer as the second buffer to pass in the ALPN information again.
 
 In order to build the ALPN information SSPI has no real information or help. So it was back to the [IETF RCF](https://tools.ietf.org/html/rfc7301). So from looking at that I
 found the data structure that was needed, it's a struct with a extension id, then a length of the following list and then a list of size prefixed strings for the supported
-protocols. Once again this was a win for the design of having a single "context" that creates each collection as it allows a single fixed buffer to be built at the context
+protocols. 
+
+Once again this was a win for the design of having a single "context" that creates each collection as it allows a single fixed buffer to be built at the context
 level and then there are no allocations per connection as we reuse that buffer.
 
 Phew.. all of that just to kick off the first handshake message! The rest of the handshake was a little more straight forward. It basically was a loop that looked something like
@@ -241,7 +244,9 @@ while (true)
 There might seem like a lot going on there but if we break it down it's pretty simple... First we await the underlying connection for some data, once we have the data we check that it's
 not empty and completed, if so the connection has finished so it's time to exit the loop, we will fail the handshake higher up and clean up anything we have created so far. Next I made my
 own TLS Frame handler, I could have cheated here and just passed the data straight into the underlying library, however on partial frames which happen often we would have just had to do
-a series of interop calls, and in the worst case an allocation and a copy. The TLS frame format is pretty simple to follow and not encrypted only the contents are so it makes sense to 
+a series of interop calls, and in the worst case an allocation and a copy. 
+
+The TLS frame format is pretty simple to follow and not encrypted only the contents are so it makes sense to 
 do that as close to the data with the smallest overhead possible and at the same time make our handling of bad frames and data a lot more straight forward because we would now know that
 any error back from the underlying libraries would not be a "false" error saying we just need the rest of the frame. In a security library it's always best to fail fast (but not too fast,
 I will explain that also later).
