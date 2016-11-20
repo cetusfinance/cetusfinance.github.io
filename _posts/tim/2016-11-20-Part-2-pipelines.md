@@ -66,7 +66,7 @@ reliant on the initial credentials.
 
 This is important and one of the reasons that I still believe that SslStream is not the way forward for server side TLS (I am going to 
 stop refering to SSL from now on, it's broken). Sslstream has the concept of making a stream, passing in the upchannel or wrapped stream
-and the certificate etc and carrying on. This leads to a major inefficency, making a authorization context for every conenction.
+and the certificate etc and carrying on. This leads to a major inefficency, making a authorization context for every connection.
 Even if you could pool and reset the SslStream you would still have the authorization per connection. 
 
 There is really no way around this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards
