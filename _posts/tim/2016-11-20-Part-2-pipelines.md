@@ -56,9 +56,10 @@ reliant on the initial credentials.
 This is important and one of the reasons that I still believe that SslStream is not the way forward for server side TLS (I am going to 
 stop refering to SSL from now on, it's broken). Sslstream has the concept of making a stream, passing in the upchannel or wrapped stream
 and the certificate etc and carrying on. This leads to a major inefficency, making a authorization context for every conenction.
-Even if you could pool and reset the SslStream you would still have the authorization per connection. There is really no way around
-this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards compatiblity these changes
-to the API really aren't feasible. So in summary this is how things are, and where I thought they should be
+Even if you could pool and reset the SslStream you would still have the authorization per connection. 
+
+There is really no way around this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards
+compatiblity these changes to the API really aren't feasible. So in summary this is how things are, and where I thought they should be
 
 ![Diagram of SslStream vs the proposed](/images/pipelines/concept.png)
 
@@ -113,7 +114,11 @@ creds.certContextArray = certPointerPointer;
 ```
 
 got me a pointer to a pointer... basically an array of 1 without allocating anything at all. So that is basically all the SecurityContext does,
-cracks the certificate (if it is needed) sets up some credentials and stores the basic settings for each connection. The real meat of the code
+cracks the certificate (if it is needed) sets up some credentials and stores the basic settings for each connection. 
+
+![Meat](/images/pipelines/meat.jpg)
+
+The real meat of the code
 starts in the SecureContext. When a new connection or Pipeline needs to be wrapped in a secure TLS blanket you simple call
 securityContext.CreateSecurePipeline(pipeline); this will return an ISecurePipeline. This implements IPipelineConnection allowing you to then chain
 it down a tree (eg an HTTP, Websockets or your protocol next). Internally what this call does is create a new SecurePipeline. This class is

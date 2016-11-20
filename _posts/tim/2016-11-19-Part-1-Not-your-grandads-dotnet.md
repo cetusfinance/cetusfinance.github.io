@@ -15,18 +15,26 @@ One of the reasons I have stuck with .net and made c# the primary
 language I focus on has always been, well the c# language. I just love
 the syntax and the pushing forward in the language development, yet the sense
 that someone is watching over it guiding it and stopping it from fragmenting into
-a million pieces. It's a great c style language but much clearer and well safer than
-c or c++ and has the second mover advantage on java (getters and setter always come to mind).
+a million pieces. 
+
+It's a great C style language but much clearer and safer than
+C or C++ as well as having the second mover advantage on java (getters and setter always come to mind).
 Over the past few years it has been harder and harder to justify. .Net was finding it's home in 
-corporations, line of business applications and windows GUI's. I was seeing a pattern emerge, the ".net"
+corporations, line of business applications and windows GUI's. 
+
+I was seeing a pattern emerge, the ".net"
 teams were writing thick client apps and the server code was on java or c++ or Go. As the OSS community
 really started to gain traction I found more and more I was diving into java, then Go and even sometimes
 enjoying myself. The .net ecosystem certainly wasn't dieing but it was moving at the pace of the rest
 of the world.
 
+## But then ..
+
 But all that started to change, Microsoft has made a massive shift that has often gone unnoticed
 both by people from other languages/linux patforms etc. But even more so from corporate developers
-who use .net on a daily basis. Microsoft these days is looking like one of the more intouch technology
+who use .net on a daily basis. 
+
+Microsoft these days is looking like one of the more intouch technology
 companies, their engineers, and architects are available and open to discussion, rapid feedback cycles,
 code openly being discussed on GitHub, real Q&A and community stand-ups and a willingness to listen.
 
@@ -42,6 +50,8 @@ both surprising and very welcome at the same time. Some of the key points that t
 So what now are they done? Not on your life, [https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/](.net core 1.1 is RTM) and that is great but Microsoft and the community have
 been cooking up even more for .net core 1.2.
 
+## The journey begins
+
 So this brings me to pipelines. About a month ago I was hanging out in a chat room about Microsoft Orleans. It's a very
 cool distributed actor model based platform (also opensource). I was digging and playing with the code mostly to see if I 
 could use the system to provide a kind of "pricing session" cache for shifting objects out of process locally or potentially
@@ -50,7 +60,9 @@ some of the things I want.
 
 It turns out that while Orleans is very cool in the performance and latency sensitive tasks I had in mind it wasn't 
 suited to what I wanted, I was too chatty and sometimes in math calculations mutable state is the only way to get things
-done quickly. However while I was in the chat there was some discussion about replacing the networking layer with an 
+done quickly. 
+
+However while I was in the chat there was some discussion about replacing the networking layer with an 
 external library so that Orleans could focus on what it was designed for and not low level concerns. Some random person
 popped into the chat and mentioned he was working on a new model to replace .net streams with something that would reduce
 memory allocations, and copying by reversing the control of buffers. This sounded interesting...
