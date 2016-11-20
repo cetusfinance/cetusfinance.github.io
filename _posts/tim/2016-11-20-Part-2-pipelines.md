@@ -1,5 +1,5 @@
 ---
-title: Pipelines formally known as channels - Pipes Part 2
+title: Pipelines formerly known as channels - Pipes Part 2
 excerpt: "A faster lower allocation stream stack for the future"
 category: "tim"
 header:
