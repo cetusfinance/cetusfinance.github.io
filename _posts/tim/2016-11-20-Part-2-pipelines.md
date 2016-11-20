@@ -267,6 +267,8 @@ while (true)
 
 ![Break it](/images/pipelines/break.jpg)
 
+## Bre... break it down
+
 There might seem like a lot going on there but if we break it down it's pretty simple... 
 
 First we await the underlying connection for some data, once we have the data we check that it's
