@@ -64,8 +64,8 @@ out to a farm of servers. Excel 32bit is prevalent in the world still and that i
 some of the things I want.
 
 It turns out that while Orleans is very cool in the performance and latency sensitive tasks I had in mind it wasn't 
-suited to what I wanted, I was too chatty and sometimes in math calculations mutable state is the only way to get things
-done quickly. 
+suited to what I wanted. My interfaces were too chatty and sometimes in large math models mutable state is the only way to get things
+done quickly.
 
 However while I was in the chat there was some discussion about replacing the networking layer with an 
 external library so that Orleans could focus on what it was designed for and not low level concerns. Some random person
