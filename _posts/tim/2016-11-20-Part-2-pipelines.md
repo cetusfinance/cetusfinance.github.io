@@ -25,6 +25,8 @@ things faster. You might say so what? I don't care about the web, or http I use 
 well don't worry, pipelines is down at the "stream" level of the stack, it's in no way tied to asp.net and it could be used
 for all sorts of scenarios, sockets, files you name it.
 
+![Locks](/images/pipelines/lock.jpg)
+
 Onto the SSL/TLS story, when I first started to look at this I probably knew as much as the average developer. A server
 has a certificate that is certified by a known certificate authority. It has a public/private key and it is used by the client
 to make sure the server is who they say they are. This is also then used to perform some sort of "handshake" to agree on a
@@ -181,7 +183,9 @@ will revisit later) you have the following flow
 ![SSL Handshake](https://upload.wikimedia.org/wikipedia/commons/a/ae/SSL_handshake_with_two_way_authentication_with_certificates.svg)
 
 Now with Http/2 Google and others realised that there was a lot of back and forward going on there, and then the first thing the client does once they have
-connected is say "hey upgrade me to http/2" and they have to wait for a response before any real work can be done. In order to streamline this (we are already doing
+connected is say "hey upgrade me to http/2" and they have to wait for a response before any real work can be done. 
+
+In order to streamline this (we are already doing
 a TCP handshake under the hood as well, although that can be reduced but that is another topic) the idea is that the client can send along a list of protocols it 
 supports during the TLS handshake and that can be negotiated while we negotiate ciphers, key strength and all of the other details.
 
@@ -191,10 +195,13 @@ supports during the TLS handshake and that can be negotiated while we negotiate 
 
 My problem with getting this to work
 for SSPI, the documentation basically didn't mention it (not the on-line stuff anyway) other than a couple of announcements saying "hey SSPI and SecureChannel support this!"
-of course SslStream didn't support it so that was no help either. But after much digging, hacking and reading obscure websites I found the answer to my problems when you call
+of course SslStream didn't support it so that was no help either. 
+
+But after much digging, hacking and reading obscure websites I found the answer to my problems when you call
 AcceptSecurityContext (for the server side) or InitializeSecurityContextW(for the client side) you have to pass in buffers with your data you want to send to be processed.
 
 In the case of a client normally you would send a null pointer for the first request, however with ALPN you need to send in a single buffer with your Extension information.
+
 On the server side you would normally send in two buffers, one being the data from the client and the second an empty token, used for messages to send to the client regarding
 issues with the connection, however in this case we use what would normally be an empty buffer as the second buffer to pass in the ALPN information again.
 
@@ -241,20 +248,26 @@ while (true)
 }
 ```
 
-There might seem like a lot going on there but if we break it down it's pretty simple... First we await the underlying connection for some data, once we have the data we check that it's
-not empty and completed, if so the connection has finished so it's time to exit the loop, we will fail the handshake higher up and clean up anything we have created so far. Next I made my
+There might seem like a lot going on there but if we break it down it's pretty simple... 
+
+First we await the underlying connection for some data, once we have the data we check that it's
+not empty and completed, if so the connection has finished so it's time to exit the loop, we will fail the handshake higher up and clean up anything we have created so far. 
+
+Next I made my
 own TLS Frame handler, I could have cheated here and just passed the data straight into the underlying library, however on partial frames which happen often we would have just had to do
 a series of interop calls, and in the worst case an allocation and a copy. 
 
 The TLS frame format is pretty simple to follow and not encrypted only the contents are so it makes sense to 
-do that as close to the data with the smallest overhead possible and at the same time make our handling of bad frames and data a lot more straight forward because we would now know that
-any error back from the underlying libraries would not be a "false" error saying we just need the rest of the frame. In a security library it's always best to fail fast (but not too fast,
-I will explain that also later).
+do that as close to the data with the smallest overhead possible. At the same time make our handling of bad frames and data a lot more straight forward because we would now know that
+any error back from the underlying libraries would not be a "false" error saying we just need the rest of the frame. 
+
+In a security library it's always best to fail fast (but not too fast, I will explain that also later).
 
 The rest of the code goes like this. If we have an incomplete frame, that is okay we will loop back around (and if it is incomplete and the connection has "completed" eg closed we will 
 throw an exception and exit out). Otherwise we check to make sure it is one of the valid handshake messages, an actual handshake or a ChangeCipherSpec (used at the end of the handshake
-to say anything from now on must be encrypted with our cool new keys). We send the frames into the underlying libraries and they will return either "handshake done" or "I am waiting for
-more data" or throw an exception.
+to say anything from now on must be encrypted with our cool new keys). 
+
+We send the frames into the underlying libraries and they will return either "handshake done", "I am waiting for more data" or throw an exception.
 
 Once we are done, we set the result of the task completion source to the protocols we negotiated (which will be zero if there was no ALPN) and return back to the main program.
 
@@ -263,6 +276,6 @@ opened 443 on my firewall, punched it through to my laptop and fired up a CDN Ht
 
 ![Success](/images/pipelines/handshakepassed.jpg)
 
-Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you wrote a new security library as a no-one on the internet, learning about
-threats, and of course Xplat-OpenSsl and some benchmarks thrown in for good measure.
+Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you wrote a new security
+library as a no-one on the internet, learning about threats, and of course Xplat-OpenSsl and some benchmarks thrown in for good measure.
 
