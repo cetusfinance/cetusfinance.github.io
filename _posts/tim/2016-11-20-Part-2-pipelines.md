@@ -165,7 +165,7 @@ at this point (and of course they are done in totally different ways on SSPI tha
 This is an extension to TLS, so maybe I have got ahead of myself a little here lets go back to how a handshake works with TLS. In a full handshake (something we
 will revisit later) you have the following flow
 
-![https://upload.wikimedia.org/wikipedia/commons/a/ae/SSL_handshake_with_two_way_authentication_with_certificates.svg](SSL Handshake)
+![SSL Handshake](https://upload.wikimedia.org/wikipedia/commons/a/ae/SSL_handshake_with_two_way_authentication_with_certificates.svg)
 
 Now with Http/2 Google and others realised that there was a lot of back and forward going on there, and then the first thing the client does once they have
 connected is say "hey upgrade me to http/2" and they have to wait for a response before any real work can be done. In order to streamline this (we are already doing
@@ -237,7 +237,7 @@ Once we are done, we set the result of the task completion source to the protoco
 It feels like that was a long winded explination, but believe me it was an even longer journey and many late nights from me... but now we had a working handshake and to confirm it, I 
 opened 443 on my firewall, punched it through to my laptop and fired up a CDN Http/2 test page
 
-[Success](images/handshakepassed.jpg)
+![Success](images/handshakepassed.jpg)
 
 Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you rewrote a security library as a no one on the internet, learning about
 threats, and of course Xplat and OpenSsl.
