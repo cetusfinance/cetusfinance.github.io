@@ -11,20 +11,20 @@ tags: [microsoft, asp.net, core, .net]
 
 # C#, it's what you use for fat clients on windows right? Wrong!
 
-One of the reasons I have stuck with .net and made c# the primary
-language I focus on has always been, well the c# language. I just love
+One of the reasons I have stuck with .net and made C# the primary
+language I focus on has always been, well the C# language. I just love
 the syntax and the pushing forward in the language development, yet the sense
 that someone is watching over it guiding it and stopping it from fragmenting into
 a million pieces. 
 
 It's a great C style language but much clearer and safer than
-C or C++ as well as having the second mover advantage on java (getters and setter always come to mind).
+C or C++ as well as having the second mover advantage on Java (getters and setter always come to mind).
 Over the past few years it has been harder and harder to justify. .Net was finding it's home in 
 corporations, line of business applications and windows GUI's. 
 
-I was seeing a pattern emerge, the ".net"
-teams were writing thick client apps and the server code was on java or c++ or Go. As the OSS community
-really started to gain traction I found more and more I was diving into java, then Go and even sometimes
+I was seeing a pattern emerge, the ".Net"
+teams were writing thick client apps and the server code was on Java or C++ or Go. As the OSS community
+really started to gain traction I found more and more I was diving into Java, then Go and even sometimes
 enjoying myself. The .net ecosystem certainly wasn't dieing but it was moving at the pace of the rest
 of the world.
 
@@ -34,7 +34,7 @@ of the world.
 
 But all that started to change, Microsoft has made a massive shift that has often gone unnoticed
 both by people from other languages/linux patforms etc. But even more so from corporate developers
-who use .net on a daily basis. 
+who use .Net on a daily basis. 
 
 Microsoft these days is looking like one of the more intouch technology
 companies, their engineers, and architects are available and open to discussion, rapid feedback cycles,
@@ -44,12 +44,12 @@ Both Microsoft and the community have benedited enormously from this with the ul
 platform itself. Last week microsft held a 3 day event live streamed called Connect(). The announcements were
 both surprising and very welcome at the same time. Some of the key points that took from it were
 
-1. ~60% of the .net core code base has been contributed from outside Microsoft
+1. ~60% of the .Net Core code base has been contributed from outside Microsoft
 2. [Techempower's round 13](https://www.techempower.com/blog/2016/11/16/framework-benchmarks-round-13/) results show asp.net on LINUX to be number 10 on plain text, with those above been mostly very thin libraries and not full frameworks
-3. Google has joined the .Net Foundation... yes google!
+3. Google has joined the .Net Foundation... yes Google!
 4. Microsoft has joined the [Linux foundation](https://techcrunch.com/2016/11/16/microsoft-joins-the-linux-foundation/) as a platinum partner.... say what?
 
-So what now are they done? Not on your life, [.net core 1.1 is RTM](https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/) 
+So what now are they done? Not on your life, [.Net Core 1.1 is RTM](https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/) 
 and that is great but Microsoft and the community have
 been cooking up even more for .net core 1.2.
 
