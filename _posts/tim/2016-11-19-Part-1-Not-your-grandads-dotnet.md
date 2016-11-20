@@ -28,7 +28,7 @@ really started to gain traction I found more and more I was diving into java, th
 enjoying myself. The .net ecosystem certainly wasn't dieing but it was moving at the pace of the rest
 of the world.
 
-[Transform](/images/granddadsnet/transform.jpg)
+![Transform](/images/granddadsnet/transform.jpg)
 
 ## But then ..
 

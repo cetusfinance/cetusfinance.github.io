@@ -15,12 +15,12 @@ So the pipelines library started life as "channels" a repo on github under David
 I came to look at it, it was up and running, buggy sure, API unbaked but it was functional. To look at how it was and a 
 good kick starter (plus a blog always worth reading) take a look at Marc Gravell's early post on the subject.
 
-[http://blog.marcgravell.com/](Marc's post on channels)
+[Marc's post on channels](http://blog.marcgravell.com/)
 
 His final comment about what to call it has now been answered by Microsoft, and that is Pipelines.
 
 If you want an overview of how it is hoped it will improve asp.net you can take a look at this performance
-overview [https://github.com/dotnet/corefxlab/blob/master/docs/roadmap.md](here) it outlines what is going on to make
+overview [here](https://github.com/dotnet/corefxlab/blob/master/docs/roadmap.md) it outlines what is going on to make
 things faster. You might say so what? I don't care about the web, or http I use raw sockets and some custom binary protocol
 well don't worry, pipelines is down at the "stream" level of the stack, it's in no way tied to asp.net and it could be used
 for all sorts of scenarios, sockets, files you name it.
@@ -40,15 +40,15 @@ key (well actually a set of keys) used to then do all communication from then on
 Well yes and no, my basic assumptions were correct, but I figured lets get some background before I just off and port SslStream.
 I thought SslStream has been around for sometime, had Xplat added to it and made in another time. 
 
-Ben Adams seemed to hint [https://github.com/dotnet/corefx/issues/11826](well more than that) at the "allocaty" nature and maybe a fresh look was needed.
+Ben Adams seemed to hint [well more than that](https://github.com/dotnet/corefx/issues/11826) at the "allocaty" nature and maybe a fresh look was needed.
 
 So then where to start? I always find that it's best if you want
 to deep-dive something then you go to the source and work up, that way you are less likely to build assumptions into your 
 thinking before you have some grounding in the topic. That left one source.... IETF specs
 
-1. [https://tools.ietf.org/html/rfc6101](SSL3) - mostly for some historical background I figured I didn't need to go back further than that
-2. [https://www.ietf.org/rfc/rfc2246.txt](TLS 1.0) - now we are starting to get somewhere
-3. [https://www.ietf.org/rfc/rfc5246.txt](TLS 1.2) - the good stuff
+1. [SSL3](https://tools.ietf.org/html/rfc6101) - mostly for some historical background I figured I didn't need to go back further than that
+2. [TLS 1.0](https://www.ietf.org/rfc/rfc2246.txt) - now we are starting to get somewhere
+3. [TLS 1.2](https://www.ietf.org/rfc/rfc5246.txt) - the good stuff
 
 Let's just say they don't make for the most exciting reading, but I was armed with just enough knowledge to be dangerous,
 time to getting started writing a security library how hard could it be?
