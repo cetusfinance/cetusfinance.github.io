@@ -9,7 +9,7 @@ header:
 tags: [microsoft, asp.net, core, .net]
 ---
 
-# C#, what you use for fat clients on windows right? Wrong!
+# C#, it's what you use for fat clients on windows right? Wrong!
 
 One of the reasons I have stuck with .net and made c# the primary
 language I focus on has always been, well the c# language. I just love
@@ -28,6 +28,8 @@ really started to gain traction I found more and more I was diving into java, th
 enjoying myself. The .net ecosystem certainly wasn't dieing but it was moving at the pace of the rest
 of the world.
 
+[Transform](/images/granddadsnet/transform.jpg)
+
 ## But then ..
 
 But all that started to change, Microsoft has made a massive shift that has often gone unnoticed
@@ -43,11 +45,11 @@ platform itself. Last week microsft held a 3 day event live streamed called Conn
 both surprising and very welcome at the same time. Some of the key points that took from it were
 
 1. ~60% of the .net core code base has been contributed from outside Microsoft
-2. [https://www.techempower.com/blog/2016/11/16/framework-benchmarks-round-13/](Techempower's round 13) results show asp.net on LINUX to be number 10 on plain text, with those above been mostly very thin libraries and not full frameworks
+2. [Techempower's round 13](https://www.techempower.com/blog/2016/11/16/framework-benchmarks-round-13/) results show asp.net on LINUX to be number 10 on plain text, with those above been mostly very thin libraries and not full frameworks
 3. Google has joined the .Net Foundation... yes google!
-4. Microsoft has joined the [https://techcrunch.com/2016/11/16/microsoft-joins-the-linux-foundation/](Linux foundation) as a platinum partner.... say what?
+4. Microsoft has joined the [Linux foundation](https://techcrunch.com/2016/11/16/microsoft-joins-the-linux-foundation/) as a platinum partner.... say what?
 
-So what now are they done? Not on your life, [https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/](.net core 1.1 is RTM) 
+So what now are they done? Not on your life, [.net core 1.1 is RTM](https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/) 
 and that is great but Microsoft and the community have
 been cooking up even more for .net core 1.2.
 
@@ -74,7 +76,8 @@ memory allocations, and copying by reversing the control of buffers. This sounde
 
 ## Meet the high performance crew
 
-Turns out people in the community know [https://twitter.com/davidfowl](David Fowler), I hadn't heard of him, [https://twitter.com/ben_a_adams](Ben Adams) or [https://twitter.com/marcgravell](Marc Gravell) (but had been using Marc's libraries 
+Turns out people in the community know [David Fowler](https://twitter.com/davidfowl), I hadn't heard of him, [Ben Adams](https://twitter.com/ben_a_adams)
+or [Marc Gravell](https://twitter.com/marcgravell) (but had been using Marc's libraries 
 for years). It just goes to show you the corporate bubbles I had lived in. Anyway I rocked along to the chat they were in,
 rudely interrupted and asked a bunch of sometimes I imagine boring questions.
 
@@ -82,13 +85,15 @@ They were all really nice even as I criticized the API, most of my feedback in o
 however they constantly encouraged it as useful to hear. They took it as it was meant constructive criticism.
 
 So I made an example project, pushing rapid messages serialized in various formats, mostly binary from things like CME data
-feeds and others and found the out of the box performance was nothing short of amazing. I wanted to help get this into the 
+feeds and others and found the out of the box performance was nothing short of amazing. 
+
+I wanted to help get this into the 
 core framework so others could use it, so .net would be faster and better and well their enthusiasm was kind of infectious.
 
- So the question was posed "Is there anything I can help with?" the resounding response was "SSL/TLS". Seems everyone wanted
- it but no one wanted to tackle it. That is where my journey began, it has been long and isn't over yet!
+So the question was posed "Is there anything I can help with?" the resounding response was "SSL/TLS". Seems everyone wanted
+it but no one wanted to tackle it. That is where my journey began, it has been long and isn't over yet!
 
- In the next post, I will try to discuss TLS, the security landscape of the world and where I have got to with TLS in 
- Pipelines.
+In the next post, I will try to discuss TLS, the security landscape of the world and where I have got to with TLS in 
+Pipelines.
 
 
