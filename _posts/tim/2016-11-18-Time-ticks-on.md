@@ -70,10 +70,16 @@ public enum DatePeriodType
 }
 ```
 
-For now that covers all of the functions we need. Then we have something called "Frequency" which contains a 
+![Frequency](/images/timetickson/frequency.jpg)
+
+## All about the frequency
+
+Then we have something called "Frequency" which contains a 
 "number of periods" and a "period type"
 this is used for most of the date functions to denote step sizes. This was made as a struct as it is just 2 int32 
-(will fit in a single 64bit register). These are passed around a lot, and created and destroyed rapidly so a struct is 
+(will fit in a single 64bit register). 
+
+These are passed around a lot, and created and destroyed rapidly so a struct is 
 the right choice here I feel. Because we need to do comparisons we had to provide an = operator, and therefore a !=, 
 Equals(object otherObject), GetHashCode. The Equals and GetHashCode could probably be improved but we aren't really
 using them yet, so we can revisit that at that time.
@@ -111,6 +117,10 @@ which while very succinct, requires string splitting and reading so isn't very e
 checking, which is less important in tests but one of the reasons you "pay the penalty" of less flexibility of a statically 
 typed language is to get as much compile time checking as possible.
 This method will of course need to be used when parsing/deserializing from text based formats later on.
+
+![Standards](/images/timetickson/standards.jpg)
+
+## Standards never are...
 
 So now we have periods, frequencies and calendars we need to look at rolling "rules". Like all good "standards" there 
 are plenty of rules. We have included
