@@ -12,13 +12,23 @@ tags: [rates, fixed income, ir, .net]
 As described in previous posts by Gav we are going to tackle the idea of building rates curves first.
 In order to do that the first thing we need is a number of date functions to allow us to generate
 schedules to do day counts, year fractions and all the things needed to price a fixed income product.
+So we have created a separate assembly project called Qwack.Dates.
 
-So we have created a separate assembly project called Qwack.Dates. The first step is to make a calendar
-class. It is not very complicated and is more just a container for the holiday/non-trading days for a specific
-calendar. The important details are that we can blank out a specific day of the week always (so you don't have to 
+![Calendar](/images/timetickson/calendar.jpg)
+
+## Because we all need a holiday
+
+The first step is to make a calendar class. It is not very complicated and is more just a container for the holiday/non-trading days for a specific
+calendar. 
+
+The important details are that we can blank out a specific day of the week always (so you don't have to 
 include weekends, but can customize them for countries that have say Friday to Saturday weekends). We have included
 months you can block out as well, we won't be using this right now but it will be useful when we get to futures that
 don't have specific month maturities.
+
+![Inherit](/images/timetickson/inherit.jpg)
+
+## One inside another, inside another ....
 
 The next feature is that calendars can inherit from other calendars. This is useful for common holidays such as easter
 or other relationships (say a state calendar that needs to include all federal holidays in the US). We then have the 
@@ -30,6 +40,7 @@ an example is below
 ``` csharp
 var provider = CalendarsFromJson.Load(JsonCalendarPath);
 ```
+
 or
 
 ``` csharp
