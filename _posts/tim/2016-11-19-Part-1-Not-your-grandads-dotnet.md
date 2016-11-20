@@ -47,8 +47,11 @@ both surprising and very welcome at the same time. Some of the key points that t
 3. Google has joined the .Net Foundation... yes google!
 4. Microsoft has joined the [https://techcrunch.com/2016/11/16/microsoft-joins-the-linux-foundation/](Linux foundation) as a platinum partner.... say what?
 
-So what now are they done? Not on your life, [https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/](.net core 1.1 is RTM) and that is great but Microsoft and the community have
+So what now are they done? Not on your life, [https://blogs.msdn.microsoft.com/webdev/2016/11/16/announcing-asp-net-core-1-1/](.net core 1.1 is RTM) 
+and that is great but Microsoft and the community have
 been cooking up even more for .net core 1.2.
+
+![salmon](/images/granddadsnet/salmon.jpg)
 
 ## The journey begins
 
@@ -66,6 +69,10 @@ However while I was in the chat there was some discussion about replacing the ne
 external library so that Orleans could focus on what it was designed for and not low level concerns. Some random person
 popped into the chat and mentioned he was working on a new model to replace .net streams with something that would reduce
 memory allocations, and copying by reversing the control of buffers. This sounded interesting...
+
+![crew](/images/granddadsnet/crew.jpg)
+
+## Meet the high performance crew
 
 Turns out people in the community know [https://twitter.com/davidfowl](David Fowler), I hadn't heard of him, [https://twitter.com/ben_a_adams](Ben Adams) or [https://twitter.com/marcgravell](Marc Gravell) (but had been using Marc's libraries 
 for years). It just goes to show you the corporate bubbles I had lived in. Anyway I rocked along to the chat they were in,
