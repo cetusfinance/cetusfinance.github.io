@@ -27,6 +27,8 @@ for all sorts of scenarios, sockets, files you name it.
 
 ![Locks](/images/pipelines/lock.jpg)
 
+## Get to the security already!
+
 Onto the SSL/TLS story, when I first started to look at this I probably knew as much as the average developer. A server
 has a certificate that is certified by a known certificate authority. 
 
@@ -144,7 +146,13 @@ public IPipelineReader Input => _outputChannel;
 public IPipelineWriter Output => _inputChannel;
 ```
 
-I have to agree with others here "HandShake" isn't really a verb, so thinking about it ShakeHandsAsync() seems better here. This is something
+I have to agree with others here "HandShake" isn't really a verb, so thinking about it ShakeHandsAsync() seems better here. 
+
+![Discussions](/images/pipelines/argue.jpg)
+
+## API design is part art, part.. nah it's an art
+
+This is something
 I have learned working on this, API design is hard. It doesn't just happen, it is thought over and discussed the number of hours I have seen being
 burnt by very smart people from midnight -> 3am on the naming and layout of just the API. 
 
