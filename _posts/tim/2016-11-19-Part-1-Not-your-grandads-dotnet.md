@@ -1,5 +1,5 @@
 ---
-title: Not your grandad's .net
+title: Not your grandad's .net - Pipes Part 1
 excerpt: "How the world really has changed for .net developers."
 category: "tim"
 header:

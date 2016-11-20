@@ -18,9 +18,9 @@ performance code to solve complex real world problems, in the simplest matter po
 
 
 # What?
-An opensource set of code and acommpaning articles discussing everything from making a high performance set of services
+An opensource set of code and accompanying articles discussing everything from making a high performance set of services
 to math functions in a managed library. Simple right? We want it to support both running on servers as well as directly in a 
-number of UI's such as an excel plugin (everyone loves a good excel plug-in) as well as a modern Chromium UI. 
+number of UI's such as an excel plug-in (everyone loves a good excel plug-in) as well as a modern Chromium UI. 
 We want it to cover a broad range of topics, theories and make it accessible, but also cover a broad range of topics from vectors/gpu's, communications
 you name it we like fiddling
 
@@ -60,7 +60,7 @@ We will roughly try to use the following set of tools to kick things off, but ar
 
 Later down the line we might add other tools like Chocolaty, and maybe even a JS framework for making a spiffy UI but for now we just want to get some meat on the bones
 
-If you head over to [qwack](https://github.com/cetusfinance/qwack) you can see the basic framework setup and building and some nice badges on the readme. If you are reading this months down the line, then maybe you 
+If you head over to [qwack](https://github.com/cetusfinance/qwack) you can see the basic framework setup and building and some nice badges on the read me. If you are reading this months down the line, then maybe you 
 want to look at just the first commits if you just want to see how we started out setting things up.
 
 So now what? Look out for the next post where hopefully I will get my first code past a code review and discuss Interpolation (and vectors :thumbsup:)
