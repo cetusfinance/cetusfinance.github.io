@@ -118,10 +118,14 @@ cracks the certificate (if it is needed) sets up some credentials and stores the
 
 ![Meat](/images/pipelines/meat.jpg)
 
+## The real meat of the code
+
 The real meat of the code
 starts in the SecureContext. When a new connection or Pipeline needs to be wrapped in a secure TLS blanket you simple call
 securityContext.CreateSecurePipeline(pipeline); this will return an ISecurePipeline. This implements IPipelineConnection allowing you to then chain
-it down a tree (eg an HTTP, Websockets or your protocol next). Internally what this call does is create a new SecurePipeline. This class is
+it down a tree (eg an HTTP, Websockets or your protocol next). Internally what this call does is create a new SecurePipeline. 
+
+This class is
 a generic with SecurePipeline<T> where T : ISecureContext. So the SecurePipeline is common to OpenSsl, SSPI, and maybe SecureTransport(Osx)
 and others in the future. This class does most of the Pipelines handling, the byte reading loop etc. The most important public methods are
 
@@ -133,10 +137,14 @@ public IPipelineWriter Output => _inputChannel;
 
 I have to agree with others here "HandShake" isn't really a verb, so thinking about it ShakeHandsAsync() seems better here. This is something
 I have learned working on this, API design is hard. It doesn't just happen, it is thought over and discussed the number of hours I have seen being
-burnt by very smart people from midnight -> 3am on the naming and layout of just the API. The implementation is often agreed on, maybe with tweaks
+burnt by very smart people from midnight -> 3am on the naming and layout of just the API. 
+
+The implementation is often agreed on, maybe with tweaks
 to come but the semantics, should this method throw an error in situation x, or should it just return an empty result? What do other parts of .net do?
 What would the end user expect? It has given me a new found respect for all those BCL's that I just start using and 9/10 times never needing to
-look for more documentation than the intellisense tool-tips. Anyway I digress, we have those methods and a few others that don't really matter
+look for more documentation than the intellisense tool-tips. 
+
+Anyway I digress, we have those methods and a few others that don't really matter
 at this point. They are the normal pipeline methods (although you can still see the channels lineage at this point) the consumer of the SecurePipeline
 writes to the Output and consumes from the input (Pipelines is written so that the consumer of your Pipeline reads those two properties from their
 perspective, another homage to the usability for the API consumer).
@@ -175,7 +183,11 @@ will revisit later) you have the following flow
 Now with Http/2 Google and others realised that there was a lot of back and forward going on there, and then the first thing the client does once they have
 connected is say "hey upgrade me to http/2" and they have to wait for a response before any real work can be done. In order to streamline this (we are already doing
 a TCP handshake under the hood as well, although that can be reduced but that is another topic) the idea is that the client can send along a list of protocols it 
-supports during the TLS handshake and that can be negotiated while we negotiate ciphers, key strength and all of the other details. My problem with getting this to work
+supports during the TLS handshake and that can be negotiated while we negotiate ciphers, key strength and all of the other details.
+
+![Crying](/images/pipelines/crying.jpg)
+
+My problem with getting this to work
 for SSPI, the documentation basically didn't mention it (not the on-line stuff anyway) other than a couple of announcements saying "hey SSPI and SecureChannel support this!"
 of course SslStream didn't support it so that was no help either. But after much digging, hacking and reading obscure websites I found the answer to my problems when you call
 AcceptSecurityContext (for the server side) or InitializeSecurityContextW(for the client side) you have to pass in buffers with your data you want to send to be processed.
