@@ -1,6 +1,6 @@
 ---
-title: Pipelines formerly known as channels - Pipes Part 2
-excerpt: "A faster lower allocation stream stack wielded for ALPN/TLS and... HTTP2"
+title: "A faster lower allocation stream stack wielded for ALPN/TLS and... HTTP2"
+excerpt: "Pipelines formerly known as channels - Pipes Part 2"
 category: "tim"
 header:
   overlay_image: pipelines/header.jpg
