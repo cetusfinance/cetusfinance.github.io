@@ -16,7 +16,7 @@ which could be used for forecasting and discounting any rates or cashflows in th
 This wasn’t just some ill thought-out theory, it was validated by many years of practice and the problems contained in the
 assumption only became obvious as 2007 drew to a close.
 
-The one curve model assumes that you can have a single curve for a currency (say USD) and that rates for various tenors of index (say [LIBOR](https://en.wikipedia.org/wiki/Libor) 3-monh and LIBOR 6-month) 
+The one curve model assumes that you can have a single curve for a currency (say USD) and that rates for various tenors of index (say [3-month LIBOR](https://en.wikipedia.org/wiki/Libor) or 6-month LIBOR) 
 can be queried from the same curve.  This means you can use a mixture of instruments referencing different tenors to build the curve and as there is only a single curve to fit, 
 front-to-back bootstrapping can be used which is both well-behaved and very fast.
 
