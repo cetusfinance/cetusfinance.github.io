@@ -9,7 +9,7 @@ header:
 tags: [fx, ir, solving]
 ---
 
-##The problem
+## The problem
 
 The problem we need to solve is to find a set of curves which reprice a set of market-quoted instruments, which means they all price to a PV of zero - the market price is seen as "fair" value and as such neither buyer nor seller would make or lose money when trading at that price.  The curves themselves are just wrapped interpolators where the x-axis is time (usually expressed as a year fraction under a specified day-count convention), the y-axis is some measure of interest rate and the type of interpolation is also a free choice.  As we will use a rate converter to facilitate any requests for discount factors or rates of different types from the curves, we are relatively agnostic to exactly what specification is chosen here so we will use log-linear interpolation in discount factor space. 
 
