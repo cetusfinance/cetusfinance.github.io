@@ -16,7 +16,7 @@ The problem we need to solve is to find a set of curves which reprice a set of m
 So we have a set of inputs, each of which serves as a constraint in our solving.  And we have a set of outputs - the values we want to solve for at points along each curve.  For our example, we will stick to the case of the number of inputs/constraints being exactly equal to the number of outputs, so it makes sense to assign one point on a curve to each input instrument.  A sensible choice for this is to use the expiry/maturity date of the instrument for this purpose.
 There are many different types of solvers one could apply here so we will go with one of the oldest and simplest - Newton Raphson.  [Wikipedia] (https://en.wikipedia.org/wiki/Newton's_method) has a solid set of articles on the topic which I wont repeat here so I will focus on the version of the algorithm we will implement:
 
-'''
+```
 Guess = InitialGuess
 PVs = PV(inputInstruments,Guess)
 While(PVs.Abs.All(>tollerance)
@@ -25,19 +25,19 @@ While(PVs.Abs.All(>tollerance)
     Guess = UpdateGuess(Guess,Jacobian)
     PVs = PV(inputInstruments,Guess)
 }
-'''
+```
 
 For the sake of keeping things simple in this example, we will compute the Jacobian numerically - that is, we will bump each input and measure the relative change in each output as so:
-'''
-pVDiff = PV(inputInstruments[i],bumpedCurve[j])-PV(inputInstruments[i],nonBumpedCurve)
+```
+pVDiff = PV(inputInstruments[i],bumpedCurve[j]) - PV(inputInstruments[i],nonBumpedCurve)
 Jacobian[i,j] = pvDiff / bumpSize
-'''
-Where buempedCurve[j] is the set of curves with only point j being bumped.
+```
+Where bumpedCurve[j] is the set of curves with only point j being bumped.
 
 The final piece of the puzzel is the UpdateGuess step. This is the Newton Rhaphson part:
 
-'''
+```
 currentPVs = PV(inputInstruments,guess)
 changeInGuess = Jacobian.Inverse() * currentPVs
 guess = guess - changeInGuess 
-'''
+```
