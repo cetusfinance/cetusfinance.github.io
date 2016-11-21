@@ -24,7 +24,8 @@ front-to-back bootstrapping can be used which is both well-behaved and very fast
 
 ## Mind the gap
 
-What became obvious, however, as the financial crisis wore on, is that that a material basis (or spread) existed and persisted for rates of different tenors.
+What became obvious, however, as the financial crisis wore on, is that that a material basis (or spread) existed and persisted for rates of different tenors.  This meant that the market saw 
+a different total outcome between two three month deposits running sequentially and a single six month deposit, or the average daily overnight rate for three months being different to the three month spot rate.
 There are many possible explanations for this but at the time, with banks floundering and failing all around, the idea that a deposit with a 
 longer maturity required a higher rate to compensate an investor due to increased credit and liquidity risk, seemed reasonable.
 
@@ -32,12 +33,12 @@ longer maturity required a higher rate to compensate an investor due to increase
 
 So what challenges did this introduce?  Firstly we needed to account for this basis with a more complex setup. 
 A book of mixed USD interest rate derivatives now needed separate curves for the various LIBOR tenors (1m, 3m, 6m and 12m at least) and more than 
-likely a curve for discounting under a standard CSA (a curve for the Federal Funds effective rate). 
+likely a curve for discounting under a standard [CSA](https://en.wikipedia.org/wiki/Credit_Support_Annex) (a curve for the Federal Funds effective rate). 
 
 So that’s at least five times the work but really not so hard, right?
 Well it would be if the market quoted and traded fixed-for-float swaps for each tenor/curve, but they don’t.
 But that’s also relatively easy to overcome if you solve for the 3m curve first (where fixed-for-float swaps and other instruments which uniquely 
-define the curve exist) then use the result to solve for the other curves where only basis swaps vs. 3m exist. 
+define the curve exist) then use the result to solve for the other curves where the benchmark instruments are basis swaps for given LIBOR tenor againt 3m LIBOR. 
 So then we just solve for the 3m curve like we did before and it all falls into place?
 
 ![Cause and Effect](/images/itallstarted/balls.jpg)
