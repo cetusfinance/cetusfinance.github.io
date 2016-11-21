@@ -3,9 +3,9 @@ title: Solving the problem
 excerpt: "Post-2007 curve solving"
 category: "gav"
 header:
-  overlay_image: itallstarted/header.jpg
+  overlay_image: solvingtheproblem/solvingtheproblem.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: itallstarted/teaser.jpg
+  teaser: solvingtheproblem/solvingtheproblem.jpg
 tags: [fx, ir, solving]
 ---
 
@@ -30,7 +30,7 @@ While(PVs.Abs.All(>tollerance)
 For the sake of keeping things simple in this example, we will compute the Jacobian numerically - that is, we will bump each input and measure the relative change in each output as so:
 
 ```
-pVDiff = PV(inputInstruments[i],bumpedCurve[j]) - PV(inputInstruments[i],nonBumpedCurve)
+pvDiff = PV(inputInstruments[i],bumpedCurve[j]) - PV(inputInstruments[i],nonBumpedCurve)
 Jacobian[i,j] = pvDiff / bumpSize
 ```
 
