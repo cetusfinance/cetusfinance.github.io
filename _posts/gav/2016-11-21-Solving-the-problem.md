@@ -28,10 +28,12 @@ While(PVs.Abs.All(>tollerance)
 ```
 
 For the sake of keeping things simple in this example, we will compute the Jacobian numerically - that is, we will bump each input and measure the relative change in each output as so:
+
 ```
 pVDiff = PV(inputInstruments[i],bumpedCurve[j]) - PV(inputInstruments[i],nonBumpedCurve)
 Jacobian[i,j] = pvDiff / bumpSize
 ```
+
 Where bumpedCurve[j] is the set of curves with only point j being bumped.
 
 The final piece of the puzzel is the UpdateGuess step. This is the Newton Rhaphson part:
