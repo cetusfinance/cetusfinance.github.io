@@ -160,7 +160,7 @@ are getting a picture of why a standarised library is both important and useful.
 
 ![Repeat](/images/timetickson/repeat.jpg)
 
-## Leave repetition to the nature
+## Leave repetition to nature
 
 This date handling alone is done over and over on almost every project we have ever worked on, some libraries provide 
 this (QuantLib is the obvious one) but they tend not to go into all of the details of the various different standards 
