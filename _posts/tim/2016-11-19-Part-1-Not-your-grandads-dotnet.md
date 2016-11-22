@@ -28,7 +28,7 @@ really started to gain traction I found more and more I was diving into Java, th
 enjoying myself. The .net ecosystem certainly wasn't dieing but it was moving at the pace of the rest
 of the world.
 
-![Transform](/images/granddadsnet/transform.jpg)
+![Transform](https://cetus.io/images/granddadsnet/transform.jpg)
 
 ## But then ..
 
@@ -53,7 +53,7 @@ So what now are they done? Not on your life, [.Net Core 1.1 is RTM](https://blog
 and that is great but Microsoft and the community have
 been cooking up even more for .net core 1.2.
 
-![salmon](/images/granddadsnet/salmon.jpg)
+![salmon](https://cetus.io/images/granddadsnet/salmon.jpg)
 
 ## The journey begins
 
@@ -72,7 +72,7 @@ external library so that Orleans could focus on what it was designed for and not
 popped into the chat and mentioned he was working on a new model to replace .net streams with something that would reduce
 memory allocations, and copying by reversing the control of buffers. This sounded interesting...
 
-![crew](/images/granddadsnet/crew.jpg)
+![crew](https://cetus.io/images/granddadsnet/crew.jpg)
 
 ## Meet the high performance crew
 

@@ -27,7 +27,7 @@ And we have a set of outputs - the values we want to solve for at points along e
 For our example, we will stick to the case of the number of inputs/constraints being exactly equal to the number of outputs, so it makes sense to assign one point on a curve to each input instrument.  A sensible choice for this is to use the expiry/maturity date of the instrument for this purpose.
 There are many different types of solvers one could apply here so we will go with one of the oldest and simplest - Newton Raphson.
 
-![Apple](/images/solvingtheproblem/apple.jpg)
+![Apple](https://cetus.io/images/solvingtheproblem/apple.jpg)
 
 ## Yes that Newton
 

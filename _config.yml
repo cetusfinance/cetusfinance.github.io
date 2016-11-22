@@ -46,7 +46,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  path                   : # blank (default) uses feed.xml
+  path                   : http://feeds.feedburner.com/cetus/fVRw
 
 # SEO Related
 google_site_verification :
