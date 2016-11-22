@@ -9,6 +9,8 @@ header:
 tags: [fx, ir, solving]
 ---
 
+If you haven't read it already it might be worth reading [why](/gav/It-all-started-in-2007/) we need to solve this problem.
+
 # The problem
 
 The problem we need to solve is to find a set of curves which reprice a set of market-quoted instruments, which means they all price to a PV of

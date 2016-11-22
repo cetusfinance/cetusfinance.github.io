@@ -40,7 +40,7 @@ Microsoft these days is looking like one of the more intouch technology
 companies, their engineers, and architects are available and open to discussion, rapid feedback cycles,
 code openly being discussed on GitHub, real Q&A and community stand-ups and a willingness to listen.
 
-Both Microsoft and the community have benedited enormously from this with the ultimate winner being the .net
+Both Microsoft and the community have benefited enormously from this with the ultimate winner being the .net
 platform itself. Last week microsft held a 3 day event live streamed called Connect(). The announcements were
 both surprising and very welcome at the same time. Some of the key points that took from it were
 
