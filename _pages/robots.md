@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: robots.txt
+permalink: /robots.txt
 ---
 
 https://cetus.io/feed.xml
