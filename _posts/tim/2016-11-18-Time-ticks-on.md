@@ -1,6 +1,6 @@
 ---
-title: Time ticks on
-excerpt: "Building a quant library always starts with the date!"
+title: Building a quant library always starts with the date!
+excerpt: "Time ticks on"
 category: "tim"
 header:
   overlay_image: timetickson/header.jpg

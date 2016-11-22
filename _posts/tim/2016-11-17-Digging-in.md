@@ -1,6 +1,6 @@
 ---
-title: Digging in
-excerpt: "Getting into the dirty details of the setup"
+title: The details of setting up a CI .Net Project with CodeCoverage
+excerpt: " Digging in"
 category: "tim"
 header:
   overlay_image: diggingIn.jpg
