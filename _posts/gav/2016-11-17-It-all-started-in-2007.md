@@ -1,6 +1,6 @@
 ---
 title: "The multi-curve interest rates model and how it came to be"
-excerpt: "When the world become so much more complex"
+excerpt: "It all started in 2007…"
 category: "gav"
 header:
   overlay_image: itallstarted/header.jpg
@@ -9,7 +9,7 @@ header:
 tags: [fx, ir, solving]
 ---
 
-# It all started in 2007…
+# When the world become so much more complex
 
 Prior to 2007, the world of quant finance relied upon an assumption which made everyone’s lives much easier – each currency has a single interest rate curve 
 which could be used for forecasting and discounting any rates or cashflows in that currency. 
