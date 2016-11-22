@@ -1,6 +1,6 @@
 ---
-title: Solving the problem
-excerpt: "Post-2007 curve solving"
+title: Solving the Post 2007 Crisis Rates Curve
+excerpt: "Part 2 of the intro to rates curves"
 category: "gav"
 header:
   overlay_image: solvingtheproblem/header.jpg
