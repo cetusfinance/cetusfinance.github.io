@@ -37,7 +37,9 @@ at the core OpenSsl wasn't all that different to SSPI. So the place to start was
 
 The first thing to learn about OpenSsl is that it has the concept of a Bio (Basic In/Out) which is similar to a file handle or a stream.
 The functions that we care about are the Read, Write, Control, Create and Free. There are Bios' for all sorts of inputs files, sockets,
-a buffering bio the list goes on. Most of the examples use a Connection directly but in Pipelines this wouldn't work because the point of the 
+a buffering bio the list goes on. 
+
+Most of the examples use a Connection directly but in Pipelines this wouldn't work because the point of the 
 library was to be a layer in an established pipeline. So a memory bio was what we needed. This would allow us to read and write bytes directly
 into OpenSsl from our own connection. The basics we needed to get this done were
 
@@ -79,7 +81,8 @@ probably be removed in a full production build. Next we tell the crypto library 
 
 ![Two halves](https://cetus.io/images/pipelinesopenssl/two.jpg)
 
-One interesting thing to note is that OpenSsl is actually two libraries, one contains code for the Bio, crypto algos, Certificates and so on. The other contains the code for
+One interesting thing to note is that OpenSsl is actually two libraries, one contains code for the Bio, crypto algos, 
+Certificates and so on. The other contains the code for
 Ssl/Tls, the protocol management and various options. Which is also not very different from how SSPI and works. The actual Cryptography part is done by another library completely (Crypto Next Generation or CNG).
 
 Now the library has been initialized we can create our context, there is a different methods for client and server
@@ -141,7 +144,11 @@ if (errorCode == Interop.SslErrorCodes.SSL_NOTHING || errorCode == Interop.SslEr
 If we get a "nothing/reading/writing" error code it simply means that we have data to write out, or read before we can finish the
 handshake, not actually an error. Anything else denotes an actual error and we throw an exception. We check for any data written by
 the library to the Bio and push it out to the underlying pipeline. After a successful connection we drop back into the encrypt/decrypt
-cycle which basically works the same as SSPI. So there we have it, OpenSsl working for handshakes, encrypt/decrypt talking to SSPI
+cycle which basically works the same as SSPI. 
+
+So there we have it, OpenSsl working for handshakes, encrypt/decrypt talking to SSPI
 over Pipelines, over streams to SslStream, on Ubuntu, Osx, and Windows (obviously not the SSPI on the first two platforms). We
-are done now... right? Wrong, at this point I had a PR but it was far from done. In the next posts I wil discuss performance and 
-how I started to think about security and threats once real security people started looking at my code!
+are done now... right? Wrong, at this point I had a PR but it was far from done. 
+
+In the next posts I wil discuss performance and 
+how I started to think about security and threats once real security people started looking at my code they should be far more interesting!
