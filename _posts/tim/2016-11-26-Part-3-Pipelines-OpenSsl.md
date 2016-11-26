@@ -77,7 +77,7 @@ public static void Init()
 Some of these methods have no return value, so I can only guess they never fail? The first two loads the various error strings which really only helps with debugging and could
 probably be removed in a full production build. Next we tell the crypto library to load all of the cipher algos and finally we can call Init on the Ssl library.
 
-![Two halves](https://cetus.io/pipelinesopenssl/two.jpg)
+![Two halves](https://cetus.io/images/pipelinesopenssl/two.jpg)
 
 One interesting thing to note is that OpenSsl is actually two libraries, one contains code for the Bio, crypto algos, Certificates and so on. The other contains the code for
 Ssl/Tls, the protocol management and various options. Which is also not very different from how SSPI and works. The actual Cryptography part is done by another library completely (Crypto Next Generation or CNG).
