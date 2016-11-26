@@ -2,8 +2,6 @@
 title: "The journey continues to Secure Pipelines, via OpenSsl"
 excerpt: "Cross platform is hard - Pipes Part 3"
 category: "tim"
-layout: single
-permalink: /test/
 header:
   overlay_image: pipelines/header.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
@@ -79,6 +77,8 @@ public static void Init()
 Some of these methods have no return value, so I can only guess they never fail? The first two loads the various error strings which really only helps with debugging and could
 probably be removed in a full production build. Next we tell the crypto library to load all of the cipher algos and finally we can call Init on the Ssl library.
 
+![Two halves](https://cetus.io/pipelinesopenssl/two.jpg)
+
 One interesting thing to note is that OpenSsl is actually two libraries, one contains code for the Bio, crypto algos, Certificates and so on. The other contains the code for
 Ssl/Tls, the protocol management and various options. Which is also not very different from how SSPI and works. The actual Cryptography part is done by another library completely (Crypto Next Generation or CNG).
 
@@ -136,47 +136,12 @@ is an "error" however we need another call to
 var errorCode = Interop.SSL_get_error(_ssl, result);
 if (errorCode == Interop.SslErrorCodes.SSL_NOTHING || errorCode == Interop.SslErrorCodes.SSL_WRITING ||
     errorCode == Interop.SslErrorCodes.SSL_READING)
-```.
+```
 
 If we get a "nothing/reading/writing" error code it simply means that we have data to write out, or read before we can finish the
 handshake, not actually an error. Anything else denotes an actual error and we throw an exception. We check for any data written by
 the library to the Bio and push it out to the underlying pipeline. After a successful connection we drop back into the encrypt/decrypt
 cycle which basically works the same as SSPI. So there we have it, OpenSsl working for handshakes, encrypt/decrypt talking to SSPI
 over Pipelines, over streams to SslStream, on Ubuntu, Osx, and Windows (obviously not the SSPI on the first two platforms). We
-are done now... right?
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BTHimgTauwQ" frameborder="0" allowfullscreen></iframe>
-
-
-
-
-
-
-
-
-
-THREADING !!!!!!
-
-
-
-
-
-
-
-
-
-
-
-
-, I guess more as a product of the underlying specification rather than any desire
-to harmonize. The API seemed a bit more "raw" there lot more inconsistencies that can drive you mad.
-
-Imagine you have been working on doing Interop callbacks, and getting managed and unmanaged code to work together, it's 3am and you just
-can't work out why you are getting an error back from a method then you re-read the man page all the way to the bottom this time and notice this
-
-> SSL_CTX_set_alpn_protos() and SSL_set_alpn_protos() return 0 on success, and non-0 on failure. WARNING: these functions reverse the return value convention.
-
-That's right in the middle of the API there is a method that just reverses the normal behavior of the rest of the code! I began the dark journey of reading
-OpenSsl rants on the internet and found solice in the fact that I wasn't the only one.. I particually liked
-
-[OpenSSL is written by monkeys (2009) - Hacker News](https://news.ycombinator.com/item?id=7556407)
+are done now... right? Wrong, at this point I had a PR but it was far from done. In the next posts I wil discuss performance and 
+how I started to think about security and threats once real security people started looking at my code!
