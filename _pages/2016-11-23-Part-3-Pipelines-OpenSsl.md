@@ -2,6 +2,8 @@
 title: "The journey continues to Secure Pipelines, via OpenSsl"
 excerpt: "Cross platform is hard - Pipes Part 3"
 category: "tim"
+layout: single
+permalink: /test/
 header:
   overlay_image: pipelines/header.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
@@ -77,8 +79,8 @@ public static void Init()
 Some of these methods have no return value, so I can only guess they never fail? The first two loads the various error strings which really only helps with debugging and could
 probably be removed in a full production build. Next we tell the crypto library to load all of the cipher algos and finally we can call Init on the Ssl library.
 
-One interesting thing to note is that OpenSsl is actually to libraries, one contains code for the Bio, crypto algos, Certificates and so on. The other actually contains the code for
-Ssl/Tls, the protocol management and various options. Which is also not very different from how SSPI and works. The actual Cryptography part is done by another library completely.
+One interesting thing to note is that OpenSsl is actually two libraries, one contains code for the Bio, crypto algos, Certificates and so on. The other contains the code for
+Ssl/Tls, the protocol management and various options. Which is also not very different from how SSPI and works. The actual Cryptography part is done by another library completely (Crypto Next Generation or CNG).
 
 Now the library has been initialized we can create our context, there is a different methods for client and server
 
@@ -117,10 +119,33 @@ else
 }
 ```
 
-Now we get to the handshake loop. The Bios are set realitve to the OpenSsl library, so the "WriteBio" is the bio
-that OpenSsl will write out too and the "ReadBio" is the bio that OpenSsl will read the bytes off the socket. 
+Now we get to the handshake loop. The Bios are set relative to the OpenSsl library, so the "WriteBio" is the bio
+that OpenSsl will write out to and the "ReadBio" is the bio that OpenSsl will read the bytes off the socket. 
 So then we write our bytes (if we are the server and have received a client hello or do nothing if we are starting
-a client connection). 
+a client connection). Next we call 
+
+``` csharp
+var result = Interop.SSL_do_handshake(_ssl);
+```
+
+A result of 1 means we have successfully completed the handshake and are ready to send/receive encrypted data. Anything else
+is an "error" however we need another call to 
+
+``` csharp
+//We didn't get an "okay" message so lets check to see what the actual error was
+var errorCode = Interop.SSL_get_error(_ssl, result);
+if (errorCode == Interop.SslErrorCodes.SSL_NOTHING || errorCode == Interop.SslErrorCodes.SSL_WRITING ||
+    errorCode == Interop.SslErrorCodes.SSL_READING)
+```.
+
+If we get a "nothing/reading/writing" error code it simply means that we have data to write out, or read before we can finish the
+handshake, not actually an error. Anything else denotes an actual error and we throw an exception. We check for any data written by
+the library to the Bio and push it out to the underlying pipeline. After a successful connection we drop back into the encrypt/decrypt
+cycle which basically works the same as SSPI. So there we have it, OpenSsl working for handshakes, encrypt/decrypt talking to SSPI
+over Pipelines, over streams to SslStream, on Ubuntu, Osx, and Windows (obviously not the SSPI on the first two platforms). We
+are done now... right?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BTHimgTauwQ" frameborder="0" allowfullscreen></iframe>
 
 
 
