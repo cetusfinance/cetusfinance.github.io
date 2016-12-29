@@ -1,6 +1,6 @@
 ---
-title: Digging in
-excerpt: "Getting into the dirty details of the setup"
+title: The details of setting up a CI .Net Project with CodeCoverage
+excerpt: " Digging in"
 category: "tim"
 header:
   overlay_image: diggingIn.jpg
@@ -11,7 +11,7 @@ tags: [setup, CI, testing, oss, .net]
 
 Enough waffle so lets start. First we create a repo in Github, which was the easy bit (the hard bit was the 2 days of trying to think of a name)
 
-![Creating the repo](/images/diggingIn/CreateRepo.jpg)
+![Creating the repo](https://cetus.io/images/diggingIn/CreateRepo.jpg)
 
 So we created the basic repo, public of course and named it Qwack. I could make up some great creation myth and
 maybe in the future I will but for now just know it came an interesting discussion that ended up and ducks and 
@@ -21,7 +21,7 @@ Next I cloned the solution locally, for now I will be working directly on master
 and pull requests with code reviews once we get into the meat of the code. So now that I had it locally I setup a 
 very simple Visual studio solution and folder structure that looked something like this.
 
-![The basic solution layout](/images/diggingIn/basicsolution.png)
+![The basic solution layout](https://cetus.io/images/diggingIn/basicsolution.png)
 
 Now we had a structure that had places for our tests, our core source code and some samples. We also had some basic 
 solution items which I will go into detail shortly. You can see that I added two .Net Core class libraries to get started. 
@@ -33,7 +33,7 @@ version as well. Because we want to heavily use features such as interpolators t
 useful for us was .Net 4.61.
 This means that we will try to target 4.61 CLR and .Net Standard 1.4. You can see below the choices available to us
 
-![.net Standard](/images/diggingIn/netstandard.png)
+![.net Standard](https://cetus.io/images/diggingIn/netstandard.png)
 
 We needed to setup our project.json file in our test to have all of the dependencies we would need later
 
@@ -75,7 +75,7 @@ So next we need to enable a bunch of integrations, and this is where modern day 
 really shine. It means your OSS project can have a true environment that outshines most corporate development environments 
 around.
 
-![our echo system](/images/diggingIn/ecosystem.png)
+![our echo system](https://cetus.io/images/diggingIn/ecosystem.png)
 
 Our Ecosystem
 
@@ -131,7 +131,7 @@ environment:
 As putting my actual token in a public file on github would be a bad idea I simply go to AppVeyor and go to the encrypt 
 option under my username
 
-![encrypt in appveyor](/images/diggingIn/encrypt.png)
+![encrypt in appveyor](https://cetus.io/images/diggingIn/encrypt.png)
 
 then you enter your token and it gives you a new encrypted string. This then is entered as above but under a "secure" tag. 
 AppVeyor will decrypt that during the build and inject it into the environment variables. You do need to be careful here 
@@ -153,7 +153,7 @@ because without badges what sort of open-source project are you really?
 A modern quantitative finance framework that makes the complex simple
 ```
 
-![readme file with badges](/images/diggingIn/readme.png)
+![readme file with badges](https://cetus.io/images/diggingIn/readme.png)
 
 so now our readme.md file has a bunch of badges for now and as you can see failing builds. So I faked the test 
 passing and now I sleep knowing our project is ready for some actual code in it.

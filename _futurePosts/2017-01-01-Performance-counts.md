@@ -76,7 +76,7 @@ I have to thank the makers of [BenchmarkDotNet](https://github.com/PerfDotNet/Be
 framework with actual output. Warmups, and all that best practice wrapped up in a nice little nuget package for you.
 
 So here is our solution layout under the test folder now
-![solution layout](/images/PerformanceCounts/Testfolder.png)
+![solution layout](https://cetus.io/images/PerformanceCounts/Testfolder.png)
 
 Now we will setup the framework in the console application to run the tests. First the test configuration which looks like this
 

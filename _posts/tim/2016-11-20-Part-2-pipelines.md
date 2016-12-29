@@ -1,6 +1,6 @@
 ---
-title: Pipelines formerly known as channels - Pipes Part 2
-excerpt: "A faster lower allocation stream stack for the future"
+title: "A faster lower allocation stream stack wielded for ALPN/TLS and... HTTP2"
+excerpt: "Pipelines formerly known as channels - Pipes Part 2"
 category: "tim"
 header:
   overlay_image: pipelines/header.jpg
@@ -25,7 +25,7 @@ things faster. You might say so what? I don't care about the web, or http I use 
 well don't worry, pipelines is down at the "stream" level of the stack, it's in no way tied to asp.net and it could be used
 for all sorts of scenarios, sockets, files you name it.
 
-![Locks](/images/pipelines/lock.jpg)
+![Locks](https://cetus.io/images/pipelines/lock.jpg)
 
 ## Get to the security already!
 
@@ -72,7 +72,7 @@ Even if you could pool and reset the SslStream you would still have the authoriz
 There is really no way around this but changing the API heavily. As SslStream is used in a lot of places and needs to maintain backwards
 compatiblity these changes to the API really aren't feasible. So in summary this is how things are, and where I thought they should be
 
-![Diagram of SslStream vs the proposed](/images/pipelines/concept.png)
+![Diagram of SslStream vs the proposed](https://cetus.io/images/pipelines/concept.png)
 
 So with that in mind I produced a first cut, and after a few reviews of the PR, I was close to having the correct spacing spelling and
 code layout :) I ended with code that looked something like this
@@ -127,7 +127,7 @@ creds.certContextArray = certPointerPointer;
 got me a pointer to a pointer... basically an array of 1 without allocating anything at all. So that is basically all the SecurityContext does,
 cracks the certificate (if it is needed) sets up some credentials and stores the basic settings for each connection. 
 
-![Meat](/images/pipelines/meat.jpg)
+![Meat](https://cetus.io/images/pipelines/meat.jpg)
 
 ## The real meat of the code
 
@@ -148,7 +148,7 @@ public IPipelineWriter Output => _inputChannel;
 
 I have to agree with others here "HandShake" isn't really a verb, so thinking about it ShakeHandsAsync() seems better here. 
 
-![Discussions](/images/pipelines/argue.jpg)
+![Discussions](https://cetus.io/images/pipelines/argue.jpg)
 
 ## API design is part art, part.. nah it's an art
 
@@ -206,7 +206,7 @@ In order to streamline this (we are already doing
 a TCP handshake under the hood as well, although that can be reduced but that is another topic) the idea is that the client can send along a list of protocols it 
 supports during the TLS handshake and that can be negotiated while we negotiate ciphers, key strength and all of the other details.
 
-![Crying](/images/pipelines/crying.jpg)
+![Crying](https://cetus.io/images/pipelines/crying.jpg)
 
 ## Now the problems come ...
 
@@ -265,7 +265,7 @@ while (true)
 }
 ```
 
-![Break it](/images/pipelines/break.jpg)
+![Break it](https://cetus.io/images/pipelines/break.jpg)
 
 ## Bre... break it down
 
@@ -295,7 +295,7 @@ Once we are done, we set the result of the task completion source to the protoco
 It feels like that was a long winded explination, but believe me it was an even longer journey and many late nights from me... but now we had a working handshake and to confirm it, I 
 opened 443 on my firewall, punched it through to my laptop and fired up a CDN Http/2 test page
 
-![Success](/images/pipelines/handshakepassed.jpg)
+![Success](https://cetus.io/images/pipelines/handshakepassed.jpg)
 
 Next time, if you aren't bored out of your mind I will discuss the interesting world of telling security people you wrote a new security
 library as a no-one on the internet, learning about threats, and of course Xplat-OpenSsl and some benchmarks thrown in for good measure.

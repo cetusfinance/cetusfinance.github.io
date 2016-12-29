@@ -1,6 +1,6 @@
 ---
-title: Time ticks on
-excerpt: "Building a quant library always starts with the date!"
+title: Building a quant library always starts with the date!
+excerpt: "Time ticks on"
 category: "tim"
 header:
   overlay_image: timetickson/header.jpg
@@ -14,7 +14,7 @@ In order to do that the first thing we need is a number of date functions to all
 schedules to do day counts, year fractions and all the things needed to price a fixed income product.
 So we have created a separate assembly project called Qwack.Dates.
 
-![Calendar](/images/timetickson/calendar.jpg)
+![Calendar](https://cetus.io/images/timetickson/calendar.jpg)
 
 ## Because we all need a holiday
 
@@ -26,7 +26,7 @@ include weekends, but can customize them for countries that have say Friday to S
 months you can block out as well, we won't be using this right now but it will be useful when we get to futures that
 don't have specific month maturities.
 
-![Inherit](/images/timetickson/inherit.jpg)
+![Inherit](https://cetus.io/images/timetickson/inherit.jpg)
 
 ## One inside another, inside another ....
 
@@ -70,7 +70,7 @@ public enum DatePeriodType
 }
 ```
 
-![Frequency](/images/timetickson/frequency.jpg)
+![Frequency](https://cetus.io/images/timetickson/frequency.jpg)
 
 ## All about the frequency
 
@@ -118,7 +118,7 @@ checking, which is less important in tests but one of the reasons you "pay the p
 typed language is to get as much compile time checking as possible.
 This method will of course need to be used when parsing/deserializing from text based formats later on.
 
-![Standards](/images/timetickson/standard.jpg)
+![Standards](https://cetus.io/images/timetickson/standard.jpg)
 
 ## Standards never are...
 
@@ -158,7 +158,7 @@ Having finished all of that (and thanks to the great
 work by [Gav](https://cetus.io/gav/) on all of the standards and actually implementing most of them!). I hope you
 are getting a picture of why a standarised library is both important and useful. 
 
-![Repeat](/images/timetickson/repeat.jpg)
+![Repeat](https://cetus.io/images/timetickson/repeat.jpg)
 
 ## Leave repetition to nature
 
@@ -184,7 +184,7 @@ We have a selection of the functions below
 Finally we have AddPeriod and Subtract period, these are used by most of the functions above and are the most useful of 
 the functions, it is the "heart" of the library.
 
-![Cover](/images/timetickson/coverage.jpg)
+![Cover](https://cetus.io/images/timetickson/coverage.jpg)
 
 ## Some cover is always good
 

@@ -1,6 +1,6 @@
 ---
-title: It all started in 2007
-excerpt: "When the world become so much more complex"
+title: "The multi-curve interest rates model and how it came to be"
+excerpt: "It all started in 2007…"
 category: "gav"
 header:
   overlay_image: itallstarted/header.jpg
@@ -9,7 +9,7 @@ header:
 tags: [fx, ir, solving]
 ---
 
-# The multi-curve interest rates model and how it came to be…
+# When the world become so much more complex
 
 Prior to 2007, the world of quant finance relied upon an assumption which made everyone’s lives much easier – each currency has a single interest rate curve 
 which could be used for forecasting and discounting any rates or cashflows in that currency. 
@@ -20,7 +20,7 @@ The one curve model assumes that you can have a single curve for a currency (say
 can be queried from the same curve.  This means you can use a mixture of instruments referencing different tenors to build the curve and as there is only a single curve to fit, 
 front-to-back bootstrapping can be used which is both well-behaved and very fast.
 
-![Mind the gap](/images/itallstarted/gap.jpg)
+![Mind the gap](https://cetus.io/images/itallstarted/gap.jpg)
 
 ## Mind the gap
 
@@ -41,7 +41,7 @@ But that’s also relatively easy to overcome if you solve for the 3m curve firs
 define the curve exist) then use the result to solve for the other curves where the benchmark instruments are basis swaps for given LIBOR tenor againt 3m LIBOR. 
 So then we just solve for the 3m curve like we did before and it all falls into place?
 
-![Cause and Effect](/images/itallstarted/balls.jpg)
+![Cause and Effect](https://cetus.io/images/itallstarted/balls.jpg)
 
 ## Multiple factors to consider
 
@@ -50,7 +50,7 @@ This comes from correctly modeling an interest rate swap where the contract refe
 the trade being executed under a market standard agreement between two banks, any cash flows need to be discounted on a curve consistent with
 the terms of a standard CSA (in the case of USD this means using a FedFunds curve).  
 
-![Magnetic](/images/itallstarted/magnet.jpg)
+![Magnetic](https://cetus.io/images/itallstarted/magnet.jpg)
 
 ## Weak links can be broken
 
@@ -61,7 +61,7 @@ The reason the link between the two curves cannot be broken or mitigated by solv
 Computationally, this has one significant side-effect – one can no longer use simple front-to-back bootstrapping to get from the 
 quoted instrument prices to the yield curves we seek.
 
-![Lines](/images/itallstarted/tackle.jpg)
+![Lines](https://cetus.io/images/itallstarted/tackle.jpg)
 
 ## Tackling the problem
 
