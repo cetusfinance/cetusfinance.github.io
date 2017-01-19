@@ -28,9 +28,8 @@ right words/ciphers and still break the whole lot by a bad implementation.
 ![Cry Me a River](https://cetus.io/images/rollyourown/cry.jpg)
 
 However I think it is madness. I am not rolling my own crypto dispite what the shouting masses say. The quote was originally
-about actually making your own cipher. I had no intention of ever doing that. Tls is a protocol it is not "Crypto". It is also the
-corner stone of security in our modern world. Almost everything goes over (or should) webservices/web pages/chromium applications
-you name it. Then people are told to not even bother to look into it. 
+about actually making your own cipher. I had no intention of ever doing that. TLS is a protocol it is not "Crypto". It is also the
+corner stone of security in our modern world. Today almost everything already goes over or should go over TLS. Then people are told to not even bother to look into it. 
 
 ![NSA Headquarters](https://cetus.io/images/rollyourown/nsa.jpg)
 
@@ -89,19 +88,19 @@ is a more interesting challenge.
 ![Testing](https://cetus.io/images/rollyourown/lab.jpg)
 
 ## Does my code work?
-The nice thing about testing Tls 1.2/1.1/1.0 etc is there is a wealth of test clients. Chrome, Firefox, Safari you get the idea.
+The nice thing about testing TLS 1.2/1.1/1.0 etc is there is a wealth of test clients. Chrome, Firefox, Safari you get the idea.
 But better than a browser during development, 
 
 ```
 OpenSsl s_client -debug -msg -connect 127.0.0.1:443
 ```
 
-Had been one of my favorites. So that is what I was using for testing, with the latest code and built with Tls 1.3 enabled. As at the time
+had been one of my favorites. So that is what I was using for testing, with the latest code and built with TLS 1.3 enabled. As at the time
 of writing this post (2017-01-19) DON'T DO THAT. It really really doesn't work, and to be fair I am not sure anyone actually claimed it did.
 
 An example of the problems, if you split the first flight (we will get to that later) of the server over multiple records and incremented the nonce
 it just doesn't work, so you have to reuse the nonce... this was the last straw in my testing. I am no expert but reusing a nonce (the clue is in the name)
-isn't cool. So after changing my code to try to work with OpenSsl in Tls 1.3 I realised maybe I was right in the first place.
+isn't cool. So after changing my code to try to work with OpenSsl in TLS 1.3 I realised maybe I was right in the first place.
 
 So it was time to go an look for more complete implementations. The first stop was Chrome Canary and Firefox nightly. They are both solid implementations
 (once again as of 2017-01-19) of draft 18. The problem with testing with a browser is you end up with a "site not secure" or some other vague response when
@@ -110,7 +109,7 @@ you get it wrong. Next stop was NSS, which was starting to look like it worked, 
 ![Docker](https://cetus.io/images/rollyourown/docker.png)
 
 Time to turn to docker, 
-I used the docker stuff from Tls-Tris to get it setup so a big thanks to that project. I did sometimes look at Mint and Tls-Tris (both Go projects for Tls 1.3),
+I used the docker stuff from Tls-Tris to get it setup so a big thanks to that project. I did sometimes look at Mint and Tls-Tris (both Go projects for TLS 1.3),
 but I tried to avoid it, other than taking some DER encoded certificates. The reason? Because I think we need multiple independent implementations that can be
 tested against each other, as well as having multiple implementations for people to find flaws in and learn from.
 (Hint I am also using docker to make sure everything still works cross platform)
@@ -123,8 +122,8 @@ As I have written a large amount of the code, I will try to keep the blog posts 
 
 [Github Repo for Leto](https://github.com/drawaes/leto)
 
-A currently working server (at time of publishing) it might crash any day now and you need a Tls 1.3 compatible browser
+A currently working server (at time of publishing) it might crash any day now and you need a TLS 1.3 compatible browser
 or you will get rejected.
 
-[Tls 1.3 Server](https://tls13.cetus.io)
+[TLS 1.3 Server](https://tls13.cetus.io)
 
