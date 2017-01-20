@@ -222,4 +222,4 @@ From here we either push the unencrypted and unwrapped data onto our output pipe
 or if it is a handshake, alert or change cipher spec onto the state machines input pipe and tell the state machine
 to process it.
 
-Next up, the TLS 1.2 state machine.
+Next up, the secrets...shhhh.
