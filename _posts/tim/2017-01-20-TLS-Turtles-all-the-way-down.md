@@ -22,7 +22,7 @@ a pipelines library would look like this
 
 ![Pipelines Basic Diagram](https://cetus.io/images/turtlesallthewaydown/pipes.png)
 
-A pipeline is basically a reader and a writer with a nice buffer pool in the middle. It's more complex and 
+A pipeline is basically a reader and a writer with a nice buffer pool in the middle. There is more to it and 
 I am minimizing the effort put in here around buffer ownership and the push pull relationship but for our purposes that
 is not important. So this would work really well if we were doing a simple compression pipeline. But TLS is more complex
 than that. We have to think of security and information leak, and TLS has more than one framing.
@@ -216,3 +216,4 @@ From here we either push the unencrypted and unwrapped data onto our output pipe
 or if it is a handshake, alert or change cipher spec onto the state machines input pipe and tell the state machine
 to process it.
 
+Next up, the TLS 1.2 state machine.
