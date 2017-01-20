@@ -15,7 +15,7 @@ The previous ramblings I wrote were the "why" I am doing this. If you are intere
 
 * [Maybe it's time to roll my own crypto, someone has to do it?](https://cetus.io/tim/Maybe-its-time-to-roll-my-own-crypto/)
 
-References and Prior reading
+References and prior reading
 
 * [RFC5246 TLS 1.2](https://tools.ietf.org/html/rfc5246)
 * [Marc Gravell on ~~Channels~~ Pipelines](http://blog.marcgravell.com/2016/09/channelling-my-inner-geek.html)
