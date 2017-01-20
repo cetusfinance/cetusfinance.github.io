@@ -15,6 +15,12 @@ The previous ramblings I wrote were the "why" I am doing this. If you are intere
 
 * [Maybe it's time to roll my own crypto, someone has to do it?](https://cetus.io/tim/Maybe-its-time-to-roll-my-own-crypto/)
 
+References and Prior reading
+
+* [RFC5246 TLS 1.2](https://tools.ietf.org/html/rfc5246)
+* [Marc Gravell on ~~Channels~~ Pipelines](http://blog.marcgravell.com/2016/09/channelling-my-inner-geek.html)
+* [David Fowler on Pipelines and Performance](https://github.com/dotnet/corefxlab/blob/master/docs/roadmap.md)
+
 ## Pipelines, Frames, Protocols
 
 I am using the new .Net Pipelines that are part of corefxLab (which means the cheese moves a lot). Generally the structure for
