@@ -205,7 +205,8 @@ is the same except we use Memset. When we dispose (or finalize) the pool we zero
 So that is all for now. The session resumption and key rotation will be a topic for another post. This can all be a little dry and the code is sparse
 but I feel it is an important topic and integral part of the library design.
 
-Next up ..... TLS 1.3 we begin
+Next up ..... ~~TLS 1.3 we begin~~ I had to revise this, I realised there was just too much code that the statemachines use
+to simply skip it. I will explain the primitives instead first.
 
 [^1]: [Pseudo Random Numbers from Wikipedia](https://en.wikipedia.org/wiki/Pseudorandom_function_family)
 [^2]: [Calculating the premaster secret - TLS 1.2](https://tools.ietf.org/html/rfc5246#section-8.1)
