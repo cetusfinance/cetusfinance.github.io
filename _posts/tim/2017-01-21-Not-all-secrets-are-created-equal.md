@@ -1,6 +1,6 @@
 ---
 title: "Not all secrets are created equal"
-excerpt: "Getting on with it - Pipes Part Tre"
+excerpt: "Getting on with it - Pipes Part Tre. What secrets do we have and how should we store them?"
 category: "tim"
 header:
   overlay_image: notallsecretsareequal/spy.jpg
@@ -129,7 +129,7 @@ so we need a way of stopping that happening. There is another way it could be pe
 we can do about this but it is a good reason to encrypt your disks. Encrypting your disk still requires not paging however because a running application
 can access the encrypted disk. 
 
-![Stock](https://cetus.io/images/notallsecretsareequal/sand.jpg)
+![Sand](https://cetus.io/images/notallsecretsareequal/sand.jpg)
 
 ## Enter the Ephemeral buffer pool - show me the code
 
