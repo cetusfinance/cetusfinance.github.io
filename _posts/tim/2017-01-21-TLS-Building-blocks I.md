@@ -1,6 +1,6 @@
 ---
 title: "TLS Building Blocks I"
-excerpt: "Getting on with it - Pipes Part 2&#xb2. Hashing and HMAC"
+excerpt: "Getting on with it - Pipes Part 2&#178;. Hashing and HMAC"
 category: "tim"
 header:
   overlay_image: buildingblocksi/lego.jpg
