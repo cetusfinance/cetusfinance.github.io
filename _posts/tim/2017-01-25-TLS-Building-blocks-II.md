@@ -1,6 +1,6 @@
 ---
 title: "TLS Building Blocks II"
-excerpt: "Getting on with it - Pipes Part 2&#178+1;. Bulk Ciphers"
+excerpt: "Getting on with it - Pipes Part 2&#178;+1. Bulk Ciphers"
 category: "tim"
 header:
   overlay_image: buildingblocksi/lego.jpg
