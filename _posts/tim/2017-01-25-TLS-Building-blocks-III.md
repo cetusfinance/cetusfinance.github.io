@@ -83,7 +83,7 @@ implementations.
 
 We have the following classes
 
-![Class Layout](https://cetus.io/images/buildingblocksiii/classes.jpg)
+![Class Layout](https://cetus.io/images/buildingblocksiii/classes.png)
 
 You can see that we have the provider but also three types of instances. The finite field instance does what it says on the tin.
 The reason for have both a ECCurve and ECFunction instance is because OpenSsl doesn't treat the X25519 and X448 curves as a simple
