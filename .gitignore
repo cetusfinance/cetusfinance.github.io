@@ -11,16 +11,4 @@ npm-debug.log*
 .vscode/settings.json
 .vscode/spell.json
 .vscode/spellchecker.json
-images/rollyourown/Thumbs.db
-images/Thumbs.db
-images/turtlesallthewaydown/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
-images/itallstarted/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
-images/whomovedmycheese/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
-images/solvingtheproblem/Thumbs.db
-images/buildingblocksi/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
-images/notallsecretsareequal/Thumbs.db
+**/Thumbs.db
