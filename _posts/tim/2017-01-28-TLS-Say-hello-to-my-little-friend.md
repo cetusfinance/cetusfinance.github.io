@@ -170,20 +170,7 @@ Iterating a list is slower than a dictionary right? Well for a small amount of i
 is not true. The next question, how many is "small"? I found it hard to find a good breakdown so I used benchmarkdotnet[^2] to make a quick program to
 test the fact. Here is a table of the results and I have checked in the code as part of the project under tests/benchmarks.
 
-     Method | ItemsInList |        Mean |    StdDev | Scaled | Scaled-StdDev |
------------ |------------ |------------ |---------- |------- |-------------- |
- Dictionary |           5 |  15.8191 ns | 0.1431 ns |   1.00 |          0.00 |
-      Array |           5 |   5.4159 ns | 0.0412 ns |   0.34 |          0.00 |
- Dictionary |          10 |  15.9850 ns | 0.1719 ns |   1.00 |          0.00 |
-      Array |          10 |   6.8669 ns | 0.1622 ns |   0.43 |          0.01 |
- Dictionary |          20 |  15.9212 ns | 0.1935 ns |   1.00 |          0.00 |
-      Array |          20 |  10.7983 ns | 0.0825 ns |   0.68 |          0.01 |
- Dictionary |          50 |  15.7054 ns | 0.0673 ns |   1.00 |          0.00 |
-      Array |          50 |  26.0449 ns | 0.1940 ns |   1.66 |          0.01 |
- Dictionary |         100 |  15.8859 ns | 0.1537 ns |   1.00 |          0.00 |
-      Array |         100 |  43.2739 ns | 0.3949 ns |   2.72 |          0.03 |
- Dictionary |         500 |  15.8272 ns | 0.1719 ns |   1.00 |          0.00 |
-      Array |         500 | 157.5246 ns | 1.1832 ns |   9.95 |          0.13 |            
+![Benchmark results showing arrays are faster until about 20 items](https://cetus.io/images/sayhello/benchmark.png)
 
 What we can see is for our case of less than 5 items the array is far quicker (setup time for the array and the dictionary is not included in the test).
 
