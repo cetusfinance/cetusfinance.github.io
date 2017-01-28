@@ -95,7 +95,7 @@ Handshake messages a diagram might help [^1]
 The version that is in the fixed part for TLS 1.3 is the same as for TLS 1.2. This may seem strange at first however it has been shown
 in the past that some server implementations have rejected clients that provide a higher number than they support or knew about when
 they were written (which is not what the spec says, this happens when specs meet reality). This means the roll out of previous versions
-of TLS have taken a long long time. To avoid this the client hello looks like a TLS 1.2. Instead there is a new extension called supported
+of TLS have taken a long long time. To avoid this the client hello looks like a TLS 1.2 version. Instead there is a new extension called supported
 versions. 
 
 This will help with backwards compatibility however it means we have to read all the way until the end to find the supported versions
