@@ -189,6 +189,8 @@ What we can see is for our case of less than 5 items the array is far quicker (s
 
 So there we have it a zero allocation, quick lookup of our cipher list.
 
+![Bunch of keys](https://cetus.io/images/sayhello/keys.jpg)
+
 ## Key Exchange
 
 We now have all of the information we need out of the mandatory data. So we move onto the extensions, we look for the supported groups section or the key share.
