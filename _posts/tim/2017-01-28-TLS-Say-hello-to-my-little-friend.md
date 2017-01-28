@@ -83,8 +83,8 @@ Now to good bit (my definition of what is interesting might be a little differen
 
 ![Client Hello Structure](https://cetus.io/images/sayhello/support.png)
 
-We can see that with TLS 1.3 we are going to ignore most of the mandatory data as it has been marked legacy, and only a couple of extensions will be used
- to get up and running and we will go through and implement the other extensions later.
+In TLS 1.3 we are going to ignore most of the mandatory data as it has been marked legacy, and only a couple of extensions will be used
+ to get up and running which we will go through below and implement the other extensions later.
 
 The read hello is similar to the version select we saw earlier however this time we will stop at the cipher suite list.
 
@@ -154,17 +154,21 @@ for (var i = 0; i < list.Length; i++)
 Alerts.AlertException.ThrowAlert(Alerts.AlertLevel.Fatal, Alerts.AlertDescription.insufficient_security, "Failed to get a bulk cipher from the cipher extensions");
 ```
 
-First we again make as many checks on the data to ensure that we are not getting bad data at any point, once again security library == reject bad data as soon as possible.
+We again make as many checks on the data to ensure that we are not getting bad data at any point, again security library == reject bad data as soon as possible.
 
 Next the loop is designed to be quick and low allocation. We are designing a component for a low down part of a framework. We don't want your TLs library triggering
-garbage collections, it's just bad etiquette. So we need a list of the ciphers that the client supports, but these are short lists so we figure out the number of items in the list
-(a ushort is 2 bytes so we divide the length by 2). Then we stackalloc an array, this might be unfamiliar to many C# coders but this will make an array on the stack. This
-will be unwound when the method exits and requires not allocations. It returns a pointer to the array so we need to be in an unsafe context to have this available.
+garbage collections, it's just bad etiquette. 
 
-Next we loop through our priority list looking for a valid match. This could have been implemented as a dictionary. This is a good example
-on when big O notation doesn't stand up to implementation. Iterating a list is slower than a dictionary right? Well for a small amount of items this
-is not true. The next question, how many is "small"? I found it hard to find a good breakdown so I used benchmarkdotnet[^2] to make a small program to
-test the fact. Here is a quick table of the results and I will check the code in as part of the project under tests/benchmarks.
+We need a list of the ciphers that the client supports, but these are short lists so we figure out the number of items in the list
+(a ushort is 2 bytes so we divide the length by 2). Then we stackalloc an array, this might be unfamiliar to many C# coders but this will make an array on the stack. This
+will be unwound when the method exits and requires no allocations on the heap. It returns a pointer to the array so we need to be in an unsafe context to have this available.
+
+Lastly we loop through our priority list looking for a valid match. This could have been implemented as a dictionary. This is a good example
+on when big O notation doesn't stand up to implementation. 
+
+Iterating a list is slower than a dictionary right? Well for a small amount of items this
+is not true. The next question, how many is "small"? I found it hard to find a good breakdown so I used benchmarkdotnet[^2] to make a quick program to
+test the fact. Here is a table of the results and I have checked in the code as part of the project under tests/benchmarks.
 
      Method | ItemsInList |        Mean |    StdDev | Scaled | Scaled-StdDev |
 ----------- |------------ |------------ |---------- |------- |-------------- |
@@ -181,12 +185,13 @@ test the fact. Here is a quick table of the results and I will check the code in
  Dictionary |         500 |  15.8272 ns | 0.1719 ns |   1.00 |          0.00 |
       Array |         500 | 157.5246 ns | 1.1832 ns |   9.95 |          0.13 |            
 
-What we can see is for our case of less than 5 items the array is far quicker (setup time for the array and the dictionary is no included in the test).
+What we can see is for our case of less than 5 items the array is far quicker (setup time for the array and the dictionary is not included in the test).
+
 So there we have it a zero allocation, quick lookup of our cipher list.
 
 ## Key Exchange
 
-We are now have all of the information we need out of the mandatory data. So we move onto the extensions, we look for the supported groups section or the key share.
+We now have all of the information we need out of the mandatory data. So we move onto the extensions, we look for the supported groups section or the key share.
 In TLS 1.3 the client estimates the key exchange type that the server will support and then pre generates a public private key pair. It can do this for more than one
 key share type, Chrome and Firefox (both in the dev builds) supply two key shares. The key share contains the public key part of the pair that was generated. If we have 
 one of these in our supported list we have everything we need to be able to generate our bulk ciphers.
@@ -220,11 +225,11 @@ public static void ReadSupportedGroups(ReadableBuffer buffer, IConnectionStateTl
 
 The method in the CryptoProvider follows the same pattern as the cipher suite selection.
 
-In summary by the end of the extensions we should have either a key share that has a public key loaded (ideal scenario) or if we couldn't agree on those a key share
-without a public key from the peer. Due to the checking for a non null key share and not overwriting with null this will work no matter the order of the extensions
+In summary by the end of the extensions we should have either a key share that has a public key loaded (ideal scenario) or if we couldn't agree on those, a keyshare
+without a public key from the peer. Due to the checking for a non null keyshare in the supported groups and not overwriting with null during the keyshare extension this will work no matter the order of the extensions
 (there is only 1 case were the extension has to be in a specific position and that is PSK which we are not supporting yet).
 
-At this point we exit the processing of the handshake and continue in the state machine. The first thing we do is create a hash object (we now have a cipher suite so know the hash we are using).
+At this point we exit the processing of the handshake and continue in the state machine. The first thing we do is create a hash object as we now have a cipher suite so know the hash we are using.
 This is a break from the libraries I have seen and as discussed instead of keeping a log of the messages in memory which is both a security risk and a waste of space we use the ability of the hash
 to be updated with more and more data. 
 
@@ -255,8 +260,10 @@ private bool NegotiationComplete()
 ```
 
 Then we check that the negotiation finished with an agreed key share and a certificate the client will accept. If we can't satisfy those two basic requirements we cannot
-continue with this client. Next we check if we have the public key from the peer agreed. If not we will need to send a "Hello Retry Request". We will then tell the client
-the key exchanges we support and the client will have to send a hello again. We will need to keep the hash of the client, as the handshake isn't restarting and this ensures
+continue with this client. 
+
+Next we check if we have the public key from the peer agreed. If not we will need to send a "Hello Retry Request". We will then tell the client
+the key exchanges we support and the client will have to send a hello again. We need to keep the hash of the client, as the handshake isn't restarting and this ensures
 that a man in the middle cannot force us to negotiate a cipher or certificate that they prefer.
 
 And that is the client hello! I have glossed over the certificates but I will leave that to a whole post of it's own. Next we can discuss the server hello (a short topic)
