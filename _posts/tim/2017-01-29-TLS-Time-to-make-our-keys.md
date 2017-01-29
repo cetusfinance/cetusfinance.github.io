@@ -243,12 +243,16 @@ private unsafe IBulkCipherInstance GetKey(byte* secret, int secretLength)
 }
 ```
 
-Here we can see that we pass in the secret that applies to our key generation, we use a string for the key "TLS 1.3, key" and "TLS 1.3, iv" for the key and
-IV respectively. We use stackalloc again because the keys are small (32byte for CHACHA20 is the biggest) and it stops the secret key going into the heap
+Here we can see that we pass in the secret that applies to our key generation, we use a string "TLS 1.3, key" and "TLS 1.3, iv" for the key and
+IV respectively. We use stackalloc again because the keys are small (32 bytes for CHACHA20 is the biggest) and it stops the secret key going into the heap
 but instead it is in the stack which will be rapidly written over.
 
 Using the handshake key we encrypt the rest of the messages in the hello from the server. Once we have finished sending those messages we use the same
 pattern as before to switch to the "traffic" keys that will be used to actually send the application data.
+
+Out of interest the IETF provide test cases for the HKDF functions which I have included as unit tests in the project which you can view at
+
+[HKDF Unit Tests](https://github.com/Drawaes/Leto/blob/master/test/Leto.Tls13Facts/HkdfFacts.cs)
 
 Next up we will discuss sending the certificates and signing the messages to prove we own the certificate.
 
