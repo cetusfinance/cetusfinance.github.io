@@ -17,7 +17,7 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "cetusfinance/cetusfinance.github.io"
 teaser                   : "curve.jpg"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 150
 comments:
   provider: disqus
   disqus:
