@@ -12,7 +12,7 @@ tags: [pipelines, networking, tls, openssl, ssl,nss, sslstream]
 ## Before we get started
 
 In case you missed it there are three parts before this, to be honest they aren't required reading because well 
-this is a total change of tact on this subject.
+this is a total change of tack on this subject.
 
 * [Part 1 - Not your Grandad's Dotnet](https://cetus.io/tim/Part-1-Not-your-grandads-dotnet/)
 * [Part 2 - Pipelines formerly known as channels](https://cetus.io/tim/Part-2-pipelines/)
