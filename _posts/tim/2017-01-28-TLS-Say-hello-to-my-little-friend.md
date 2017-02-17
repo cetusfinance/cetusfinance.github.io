@@ -9,7 +9,7 @@ header:
 tags: [pipelines, tls1.3, tls, ssl, leto]
 ---
 
-### Prior Reading
+### [Prior Reading](#prior-reading)
 
 The series is going to assume you understand the terms introduced previously. 
 
@@ -21,7 +21,7 @@ The series is going to assume you understand the terms introduced previously.
 * [Building Blocks III - Key Exchange](https://cetus.io/tim/TLS-Building-blocks-III/)
 * [Version Detection](https://cetus.io/tim/TLS-Version-Detection/)
 
-## The state of it all
+## [The state of it all](#the-state-of-it-all)
 
 So now we have a state machine for our target version (TLS 1.3). We can take a quick look at some of the methods common to the state machines
 
@@ -77,7 +77,7 @@ reduced initial latency promised by the new version.
 
 We also see here that at any point an unexpected issue occurs we throw an alert exception and exit, we never try to recover or resume that way we are less open to security flaws.
 
-## Say Hello!
+## [Say Hello!](#say-hello)
 
 Now to good bit (my definition of what is interesting might be a little different to everyone else). We will revisit a simplified diagram of the hello message
 
@@ -180,7 +180,7 @@ So there we have it a zero allocation, quick lookup of our cipher list.
 
 ![Bunch of keys](https://cetus.io/images/sayhello/keys.jpg)
 
-## Key Exchange
+## [Key Exchange](#key-exchange)
 
 We now have all of the information we need out of the mandatory data. So we move onto the extensions, we look for the supported groups section or the key share.
 In TLS 1.3 the client estimates the key exchange type that the server will support and then pre generates a public private key pair. It can do this for more than one
