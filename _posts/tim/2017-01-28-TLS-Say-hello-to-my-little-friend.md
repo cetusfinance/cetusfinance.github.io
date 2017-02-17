@@ -163,7 +163,7 @@ We need a list of the ciphers that the client supports, but these are short list
 (a ushort is 2 bytes so we divide the length by 2). Then we stackalloc an array, this might be unfamiliar to many C# coders but this will make an array on the stack. This
 will be unwound when the method exits and requires no allocations on the heap. It returns a pointer to the array so we need to be in an unsafe context to have this available.
 
-[## Big O](#big-o)
+## [Big O](#big-o)
 
 Lastly we loop through our priority list looking for a valid match. This could have been implemented as a dictionary. This is a good example
 on when big O notation doesn't stand up to implementation. 
