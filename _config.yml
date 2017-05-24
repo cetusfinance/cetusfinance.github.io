@@ -11,13 +11,15 @@ title                    : "Cetus"
 title_separator          : "-"
 name                     : "Cetus.io"
 description              : "Making the complex simple"
-url                      : "https://cetus.io"
+url                      : "Http://localhost:4000"
 enforce_ssl              : cetus.io   # without any protocol
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "cetusfinance/cetusfinance.github.io"
 teaser                   : "curve.jpg"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 150
+gist:
+  noscript: false
 comments:
   provider: disqus
   disqus:
@@ -90,7 +92,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "cetusfinance"
+  #github           : "cetusfinance"
   google_plus      :
   keybase          :
   instagram        :
@@ -242,3 +244,4 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+    
