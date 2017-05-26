@@ -3,7 +3,7 @@ title: "ASPNET-Consul-Service Disovery and All That Jazz"
 excerpt: "The second in a series of short video tutorials that take you past hello world Web APIs"
 category: "tim"
 header:
-  overlay_image: ASPNETCOREWebApiGettingStarted/header.jpg
+  overlay_image: jazz.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
   teaser: ASPNETCOREWebApiGettingStarted/teaser.jpg
 tags: [aspnet, webapi, aspnetcore, visual studio, vs code, consul]
