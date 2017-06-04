@@ -11,7 +11,7 @@ title                    : "Cetus"
 title_separator          : "-"
 name                     : "Cetus.io"
 description              : "Making the complex simple"
-url                      : "Http://localhost:4000"
+url                      : "Https://cetus.io"
 enforce_ssl              : cetus.io   # without any protocol
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "cetusfinance/cetusfinance.github.io"
