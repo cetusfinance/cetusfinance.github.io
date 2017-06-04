@@ -9,7 +9,7 @@ header:
 tags: [performance, .net, options, aad]
 ---
 
-[!Atlantic](https://cetus.io/images/addthrowdown/atlantic.jpg)
+![Atlantic](https://cetus.io/images/aadthrowdown/atlantic.jpg)
 
 # Crossing the pond
 ##### *A quick intro to American vs. European options*
@@ -27,7 +27,7 @@ Grid pricing isn't only for American options - one can price a European option i
 
 I've chosen diffSharp as the AAD library for ease of implementation.  There are others we could look at but as a first step I'm attempting to get a ball-park comparison as to how AAD compares to other methods.  The code for the trinomial grid pricing algorithim can be found in the Qwack library, as can our implementation of Black-76.
 
-![Raw meat](https://cetus.io/images/addthrowdown/raw.jpg)
+![Raw meat](https://cetus.io/images/aadthrowdown/raw.jpg)
 ##### Raw results
 
 Times for computing PV 100 times on my i5-6200u laptop, compiled and run in release mode:
