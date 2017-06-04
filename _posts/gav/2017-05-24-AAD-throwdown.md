@@ -8,6 +8,9 @@ header:
   teaser: PerformanceCounts/teaser.jpg
 tags: [performance, .net, options, aad]
 ---
+
+[!Atlantic](https://cetus.io/images/addthrowdown/atlantic.jpg)
+
 # Crossing the pond
 ##### *A quick intro to American vs. European options*
 
@@ -24,6 +27,7 @@ Grid pricing isn't only for American options - one can price a European option i
 
 I've chosen diffSharp as the AAD library for ease of implementation.  There are others we could look at but as a first step I'm attempting to get a ball-park comparison as to how AAD compares to other methods.  The code for the trinomial grid pricing algorithim can be found in the Qwack library, as can our implementation of Black-76.
 
+![Raw meat](https://cetus.io/images/addthrowdown/raw.jpg)
 ##### Raw results
 
 Times for computing PV 100 times on my i5-6200u laptop, compiled and run in release mode:
@@ -48,4 +52,4 @@ The vanilla trinomial result above scales as expected - the PV plus two greeks r
 
 ##### Some conclusions
 
-My first foray into AAD was disappointing to say the least.  It could be my implementation but I doubt that could account for such a massive speed discrepancy.  From here I see two other tests I want to make - trying another .NET open-source AAD library and stacking that up against a vectorized version of the trinomial grid code.  Watch this space for more... 
+My first foray into AAD was disappointing to say the least.  It could be my implementation but I doubt that could account for such a massive speed discrepancy.  From here I see two other tests I want to make - trying another .NET open-source AAD library and stacking that up against a vectorized version of the trinomial grid code.  Watch this space for more on using vectors to speed up our opensource finance library.... 
