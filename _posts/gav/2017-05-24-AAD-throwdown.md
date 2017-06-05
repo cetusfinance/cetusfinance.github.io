@@ -53,3 +53,5 @@ The vanilla trinomial result above scales as expected - the PV plus two greeks r
 ##### Some conclusions
 
 My first foray into AAD was disappointing to say the least.  It could be my implementation but I doubt that could account for such a massive speed discrepancy.  From here I see two other tests I want to make - trying another .NET open-source AAD library and stacking that up against a vectorized version of the trinomial grid code.  Watch this space for more on using vectors to speed up our opensource finance library.... 
+
+Test code can be found on a branch of Qwack, [HERE](https://github.com/cetusfinance/qwack/tree/AmericanAAD)
