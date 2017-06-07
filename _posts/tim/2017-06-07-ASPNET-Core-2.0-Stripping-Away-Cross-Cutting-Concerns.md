@@ -266,7 +266,13 @@ specific directory structure under this folder.
 2. The Framework type which we will have "Microsoft.NETCore.App"
 3. The Framework version, in our case "2.0.0-preview1-002111-00"
 
-So the final folder where we put our extra dependency file will be "C:\code\Condenser.ApiFirst\additionaldeps\shared\Microsoft.NETCore.App\2.0.0-preview1-002111-00". The file we will put in there will be the one straight from the build folder of our hosting injected application "Condenser.ApiFirst.BootStrapper.deps.json". 
+So the final folder where we put our extra dependency file will be 
+
+```
+C:\code\Condenser.ApiFirst\additionaldeps\shared\Microsoft.NETCore.App\2.0.0-preview1-002111-00
+```
+
+The file we will put in there will be the one straight from the build folder of our hosting injected application "Condenser.ApiFirst.BootStrapper.deps.json". 
 
 Simple right? Wrong, if you have got to this point you might notice that it won't actually run.
 
