@@ -30,7 +30,7 @@ Times for computing PV and delta 100 times on my i7-3750 workstation, compiled a
 |Trinomial-DiffSharp|89.01838|
 |Trinomial-DiffSharp-Vectorized|1.54425|
 
-So quite the improvement, but there is an inevitable catch.  The vectorized form using DiffSharp can compute a PV but the AAD fails to produce a number - this is likely because the vectorized grid calculation requires three overlapping vectors.  This is easy to do with copying arrays or constructing .NET vectors but there is no 'native' DiffSharp operation for this and I couldn't come up with a method to perform the same with what was on offer.
+So quite the improvement, but there is an inevitable catch.  The vectorized form using DiffSharp can compute a PV but the AAD fails to produce a number for delta - this is likely because the vectorized grid calculation requires three overlapping vectors.  This is easy to do with copying arrays or constructing .NET vectors but there is no 'native' DiffSharp operation for this and I couldn't come up with a method to perform the same with what was on offer.
 
 Also worth commenting on is the effect of moving from double to single precision numbers in the calculations.  The option is a 5y 150 strike call (forward = 100, zero discounting rate, volatility = 16%), priced using 4000 grid steps.  The equivalent Black-76 PV (computed under double precision) is shown as the benchmark:
 
@@ -44,5 +44,5 @@ Also worth commenting on is the effect of moving from double to single precision
 
 ##### Some conclusions
 
-After my initial disappointment, I'm glad I revisited DiffSharp and AAD.  It seems that, much like regular SIMD vectorization, AAD can offer significant benefits but requires a potentially major refactoring of code and will only be of use in certain situations.  I can see a regular monte-carlo simulation, rather than trinomial grid, offering an easier target for improvement and maybe that is something for me to look at in the future.  Also it seems like the debate on speed vs. accuracy for double-vs.-single precision in financial calculations is worth continuing as halving the variable size will produce gains of up to 50% in vectorized code, whether it relates to AAD or SIMD.
+After my initial disappointment, I'm glad I revisited DiffSharp and AAD.  It seems that, much like regular SIMD vectorization, AAD can offer significant benefits but requires a potentially major refactoring of code and will only be of use in certain situations.  I can see a regular monte-carlo simulation, rather than trinomial grid, offering an easier target for improvement and maybe that is something for me to look at in the future.  Also it seems like the debate on speed vs. accuracy for double-vs.-single precision in financial calculations is worth perpetuating as halving the variable size will produce gains of up to 50% in vectorized code, whether it relates to AAD or SIMD.
 
