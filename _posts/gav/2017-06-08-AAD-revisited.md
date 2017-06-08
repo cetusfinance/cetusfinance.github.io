@@ -11,7 +11,7 @@ tags: [performance, .net, options, aad]
 
 ![Atlantic](https://cetus.io/images/aadthrowdown/atlantic.jpg)
 
-# Crossing the pond
+# Time for a rematch
 ##### *Where we got to last time*
 
 In my previous post on the [topic](https://cetus.io/gav/AAD-throwdown/), it seemed like AAD was far from a magic bullet to aid in speedy greeks calculations - the AAD method was too slow to be useful.  Having read some more around the topic, I saw a few authors pointing out that dropping AAD types in like-for-like with vanilla .NET types is rarely optimal and instead the code should be re-cast as a vector problem.  As I'm always keen for some vectorization, I decided to revisit...
