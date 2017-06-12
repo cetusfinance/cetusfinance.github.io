@@ -3,13 +3,11 @@ title: Stripping Americans
 excerpt: "Stripping implied vols from American option PVs"
 category: "gav"
 header:
-  overlay_image:  traderChart.jpg
+  overlay_image:  Caddy.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
   teaser: PerformanceCounts/teaser.jpg
 tags: [performance, .net, options]
 ---
-
-![American](https://cetus.io/images/strippingAmericans/Caddy.jpg)
 
 # Spot the difference
 ##### *Who's worth more..?*
