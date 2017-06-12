@@ -5,7 +5,7 @@ category: "gav"
 header:
   overlay_image:  Caddy.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: StrippingAmericans/Teaser.jpg
+  teaser: strippingAmericans/Teaser.jpg
 tags: [performance, .net, options]
 ---
 
