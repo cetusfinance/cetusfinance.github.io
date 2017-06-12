@@ -5,7 +5,7 @@ category: "gav"
 header:
   overlay_image:  traderChart.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: PerformanceCounts/teaser.jpg
+  teaser: AADThrowdown/greece.jpg
 tags: [performance, .net, options, aad]
 ---
 
