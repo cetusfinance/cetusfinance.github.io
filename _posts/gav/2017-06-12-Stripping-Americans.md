@@ -9,7 +9,7 @@ header:
 tags: [performance, .net, options]
 ---
 
-![Atlantic](https://cetus.io/images/aadthrowdown/atlantic.jpg)
+![American](https://cetus.io/images/strippingAmericans/Caddy.jpg)
 
 # Spot the difference
 ##### *Who's worth more..?*
@@ -20,9 +20,11 @@ Under Black-type dynamics, with everything else equal, an American option has to
 
 The edge cases here are worth considering - when are American and European options worth exactly the same?  The first, trivial, case is where the option is so far out-of-the-money that it is worth zero.  The second case is where the discounting rate is zero - to explain this we need to consider the circumstances under which one would actualy exercise an American option early.  This article will focus on options-on-futures and the decision to exercise early depends on the type of margining applied.  
 
-In the more common margined-as-options case (such as used on most CME listed Ameerican contracts), the decision to exercise comes as the loss in remaining time-value of the option becomes worth less than the interest which could be earned by excerising and putting the cash on deposit.  This is because to realize the profit from an margined-as-option trade, one must either sell or exercise the position - keeping a deep in-the-money position and not exercising it means forgoing any interest which could be earned on the intrinsic value (remember that futures have no, or very little, cost of carry).  
+In the more common margined-as-options case (such as used on most CME listed American contracts), the decision to exercise comes as the loss in remaining time-value of the option becomes worth less than the interest which could be earned by excerising and putting the profit on deposit.  This is because to realize the profit from an margined-as-option trade, one must either sell or exercise the position - keeping a deep in-the-money position and not exercising it means forgoing any interest which could be earned on the intrinsic value (remember that futures have no, or very little, cost of carry).  
 
 In the less common margined-as-futures case (such as ICE Brent or JSE-listed FX options), any PnL from moves in the option value are instantly/overnight realized as cash.  This means the reason to exercise a deep ITM position early vanishes as the profit can be put on deposit while the position still exists.  As such, there is never a reason to early exercise and the option can, in practice, be priced using the Black formula with zero discount rate. 
+
+![Search](https://cetus.io/images/strippingAmericans/Search.jpg)
 
 ##### *Searching for a volatility*
 
