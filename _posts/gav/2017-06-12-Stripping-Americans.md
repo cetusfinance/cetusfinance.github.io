@@ -12,7 +12,7 @@ tags: [performance, .net, options]
 # Spot the difference
 ##### *Who's worth more..?*
 
-Under Black-type dynamics, with everything else equal, an American option has to be worth more than (or equal to) the equivalent European.  This makes logical sense - one could take an American and choose not to exercise it until the last possible moment, making it exactly equivalent to a European.  The extra optionality (i.e. the possibility to exercise early if it suits the holder) can only add to the value.  If we then look at the inverse implication of this, for a given option premium, the implied vol for an American option must be less than (or equal to) the equivalent European implied vol.
+Under Black-type dynamics, with everything else equal, an American option has to be worth more than (or equal to) the equivalent European.  This makes logical sense - one could take an American and choose not to exercise it until the last possible moment, making it exactly equivalent to a European.  The extra optionality (i.e. the possibility to exercise early if it suits the holder) can only add to the value.  If we then look at the inverse implication of this, for a given option premium, the implied vol for an American option must be less than (or equal to) the equivalent Black/European implied vol.
 
 ##### *Life at the edge*
 
