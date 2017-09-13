@@ -3,9 +3,9 @@ title: Actual Analytic Jacobians
 excerpt: "Implementing an analyic jacobian builder"
 category: "gav"
 header:
-  overlay_image:  AnalyticSuperSpeed/header.jpg
+  overlay_image:  analyticsuperspeed/header.jpg
   overlay_filter: rgba(50, 50, 50, 0.5)
-  teaser: AnalyticSuperSpeed/teaser.jpg
+  teaser: analyticsuperspeed/teaser.jpg
 tags: [performance, .net, curves]
 ---
 # The setup
@@ -22,7 +22,7 @@ The slow part of the algorithm is generating the jacobian matrix.  If we use a n
 ![chain](https://cetus.io/images/analyticsuperspeed/chain.jpg)
 ##### *The solution*
 
-There is another way.  Rather than trying to numerically estimate the jacobian by bumping and calculating, we can turn our function to generate the PV of each instrument into a function to generate the sensitivity of the PV to bumps in our underlying curves. The key is to break the problem up and use the chain rule:
+There is another way.  Rather than trying to numerically estimate the jacobian by bumping and calculating, we can turn our function to generate the PV of each instrument into a function to generate the sensitivity of the PV to bumps in our underlying curves. The key is to break the problem up and use the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
  $$\frac{dp}{dr}=\frac{dp}{dq}*\frac{dq}{dr}$$
 
