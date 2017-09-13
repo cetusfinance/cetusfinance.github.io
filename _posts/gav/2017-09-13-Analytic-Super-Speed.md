@@ -1,6 +1,6 @@
 ---
 title: Actual Analytic Jacobians
-excerpt: "Implementing an analyic jacobian builder"
+excerpt: "Implementing an analytic jacobian builder"
 category: "gav"
 header:
   overlay_image:  analyticsuperspeed/header.jpg
