@@ -45,7 +45,7 @@ If you look in the Qwack code base, you can see this in the Sensitivities method
 
 The benchmark compares a simple curve build scenario - solving swap curves with OIS for two currencies - in three scenarios.  Firstly we just throw the solver at the problem.  Secondly we split up the problem into solve stages, where only curves which actually need to be solved simultaneously are done so. Both of the first two methods use a numerically-estimated jacobian in the solver.  The third test case uses an analytic jacobian as described above with the solve stages of the second test.
 
-Tests are run on my i5-6200u laptop using .NET Core 2.0:
+Tests are run on my i5-6200u laptop using benchmarkDotNet on .NET Core 2.0:
 
 |Method|Mean(ms)|Error(ms)|StdDev(ms)|Scaled|Gen 0|Gen 1|Allocated|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
