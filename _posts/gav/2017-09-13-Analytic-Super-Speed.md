@@ -45,7 +45,7 @@ If you look in the Qwack code base, you can see this in the Sensitivities method
 
 The benchmark compares a simple curve build scenario - solving swap curves with OIS for two currencies - in three scenarios.  Firstly we just throw the solver at the problem.  Secondly we split up the problem into solve stages, where only curves which actually need to be solved simultaneously are done so. Both of the first two methods use a numerically-estimated jacobian in the solver.  The third test case uses an analytic jacobian as described above with the solve stages of the second test.
 
-Tests are run on my i5-6200u laptop using benchmarkDotNet on .NET Core 2.0:
+Tests are run on my i5-6200u laptop using benchmarkDotNet on .NET Core 2.0 on Windows 10:
 
 |Method|Mean(ms)|Error(ms)|StdDev(ms)|Scaled|Gen 0|Gen 1|Allocated|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -54,3 +54,5 @@ Tests are run on my i5-6200u laptop using benchmarkDotNet on .NET Core 2.0:
 |StagedAnalyticJacobian| 106.3 |   2.030 |  0.7239 |   0.13 | 11500.00 | 800.00 |  19.62 MB |
  
 So the using staging roughly cuts the time in three and the analytic jacobian basically halves it again.  I included the memory stats above to demonstrate the trade off - far more memory allocations and GC passes. On the whole though, I'd say thats a pretty easy trade-off to live - just goes to show that throwing a solver at a problem is rarely optimal!
+
+If you want to see how the numbers vary on your hardware, qwack\test\benchmark\Qwack.Curves.Benchmark app (complied in release mode) and select SolvingOisBenchmark - let us know in the comments if you see anything materially different, would be very interesting to see how this scales on AMD hardware and/or on Linux.
