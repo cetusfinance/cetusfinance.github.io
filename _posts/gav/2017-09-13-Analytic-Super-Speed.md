@@ -15,7 +15,7 @@ In a previoius [post](/gav/Jacobian-Juggling/), I covered a few ways to accelera
 
 ##### *The problem*
 
-Our curve engine solver fits the curves to the market instrument prices by using a [Gauss-Newton](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm) solver - it tries to find the set of curves which give zero present value (PV) for each of the market instruments.  The algorithm itteratively improves the solution by taking the output from the current guess and applying a transform using the jacobian matrix and in the case of a truly linear problem can get to the answer in a single step.  In the case of our curve solving problem, it usually takes around five steps to get to the answer.
+Our curve engine solver fits the curves to the market instrument prices by using a [Gauss-Newton](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm) solver - it tries to find the set of curves which give zero present value (PV) for all of the market instruments simultaneously.  The algorithm itteratively improves the solution by taking the output from the current guess and applying a transform using the jacobian matrix and, in the case of a truly linear problem, can get to the answer in a single step.  In the case of our curve solving problem, it usually takes around five steps to get to the answer.
 
 The slow part of the algorithm is generating the jacobian matrix.  If we use a numerical method to generate it, we will need to bump each point on the curve we are trying to solve and measure the change in each instrument we are trying to fit the curves to.  That, in turn, causes many (many, many) calls to a relativelty expensive interpolation function.
 
@@ -53,4 +53,4 @@ Tests are run on my i5-6200u laptop using .NET Core 2.0:
 |Staged|244.3|16.410|  5.8522|   0.29 |   900.00 | 200.00 |   2.43 MB |
 |StagedAnalyticJacobian| 106.3 |   2.030 |  0.7239 |   0.13 | 11500.00 | 800.00 |  19.62 MB |
  
-So the using staging roughly cuts the time in three and the analytic jacobian basically halves it again.  I included the memory stats above to demonstrate the trade off - far more memory allocations and GC passes. 
+So the using staging roughly cuts the time in three and the analytic jacobian basically halves it again.  I included the memory stats above to demonstrate the trade off - far more memory allocations and GC passes. On the whole though, I'd say thats a pretty easy trade-off to live - just goes to show that throwing a solver at a problem is rarely optimal!
