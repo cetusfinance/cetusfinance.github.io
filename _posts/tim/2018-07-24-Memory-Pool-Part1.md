@@ -13,13 +13,19 @@ tags: [pooling, dotnet, core, memory, span, performance]
 
 ## In the current heat we are all feeling let's discuss pooling in .Net
 
-A pool is a set of objects that we can reuse over and over again without having to create a new instance each time. Pooling is an important part of writing an efficient and high performance server side application. While pooling is sometimes used client side in specialized scenarios it will most commonly be found in server side applications so that is what we will mostly deal with here. One client side application of pooling you might find is in the area of gaming where similar sets of objects (say for graphics) are produced over and over in fast tight rendering loops. There are different implications for those pools which we might touch on but generally this is focused on a server serving many clients quickly.
+A pool is a set of objects that we can reuse over and over again without having to create a new instance each time. Pooling is an important part of writing an efficient and high performance server side application. 
+
+While pooling is sometimes used client side in specialized scenarios it will most commonly be found in server side applications so that is what we will mostly deal with here. One client side application of pooling you might find is in the area of gaming where similar sets of objects (say for graphics) are produced over and over in fast tight rendering loops. 
+
+There are different implications for those pools which we might touch on but generally this is focused on a server serving many clients quickly.
 
 ## Why do you use a pool?
 
 Allocating is practically "free" with a managed memory based runtime. All you need to do to allocate in its simple form is increment a pointer. However when you create many objects and then free them the freeing of these objects can become costly. During a garbage collection the code needs to walk the tree of objects to find ones that have been freed and to then mark them (find objects that are no longer rooted and can be cleaned up). Once they are freed heaps need to be compacted and then memory released or zeroed and reused for more allocations.
 
 Allocating and de-allocating large numbers of objects leads to behaviors like Garbage collector pauses or if you are running on a more aggressive GC mode (workstation GC) it will appear as high CPU use outside of your application code or an inability to scale. This is why there has been a big push to reduce "allocations" in the .NET framework. However sometimes you need objects as not everything can be on the stack either due to size or lifetime requirements (the need to survive across async boundaries).
+
+> A quick quote from .Net Performance Czar Ben Adams
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">You don&#39;t need to worry about garbage collection; if you don&#39;t allocate! <a href="https://t.co/nFxHC7nmCb">pic.twitter.com/nFxHC7nmCb</a></p>&mdash; Ben Adams (@ben_a_adams) <a href="https://twitter.com/ben_a_adams/status/895065527197982720?ref_src=twsrc%5Etfw">August 8, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -32,7 +38,11 @@ So very short lived and small sized objects can be stack based (structs, stackal
 
 ![parent child hands](https://cetus.io/images/poolingpart1/hands.jpg)
 
-.NET has a multi generation garbage collector, generation zero collections happen often and are quick. However if an object survives this it will be promoted to the next generation (baring certain edge cases). As these are pushed up the generation each collection of these generations takes a lot longer and is more costly. This generally works well however if we take the basic example of a socket based application we might create a new buffer (say a Memory<T> from an empty array) and then we wait for data. This will most likely cross a gen zero collection, we will use the buffer to collect data and pass it off to some application code and then create a new empty Memory<T> and wait for more data. The application will then release the first buffer and this now becomes a "Middle age" buffer. It will likely hang around for a while and if we are going fast enough these will build up quickly and cause a full multi generation GC. This can cause a "stop the world" point in the GC and freeze our application.
+.NET has a multi generation garbage collector, generation zero collections happen often and are quick. However if an object survives this it will be promoted to the next generation (baring certain edge cases). As these are pushed up the generation each collection of these generations takes a lot longer and is more costly. 
+
+This generally works well. However; if we take the basic example of a socket based application, we might create a new buffer (say a Memory<T> from an empty array) and then we wait for data. This will most likely cross a gen zero collection, we will use the buffer to collect data and pass it off to some application code and then create a new empty Memory<T> and wait for more data. The application will then release the first buffer and this now becomes a "Middle age" buffer. 
+
+The buffer will likely hang around for a while and if we are going fast enough these will build up quickly and cause a full multi generation GC. This can cause a "stop the world" point in the GC and freeze our application.
 
 So how can we avoid this middle age object problem? We can take some power back from the GC. To do this we will create our own pool of buffers. The socket can take a buffer from this pool, fill it and pass it along to the application code. When the application code finishes with the buffer it will give it back to the pool to allow it to be reused. The socket doesn't need to understand when the application code is done with the buffer and when it should be reused.
 
