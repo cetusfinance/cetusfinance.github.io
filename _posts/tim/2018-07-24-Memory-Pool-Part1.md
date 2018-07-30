@@ -9,7 +9,7 @@ header:
 tags: [pooling, dotnet, core, memory, span, performance]
 ---
 
-# Garabage collection isn't free or perfect so can pooling help?
+# Garbage collection isn't free or perfect so can pooling help?
 
 ## In the current heat we are all feeling let's discuss pooling in .Net
 
