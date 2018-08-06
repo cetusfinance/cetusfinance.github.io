@@ -29,7 +29,7 @@ This might be the first, and probably the easiest way for most people to get int
 
 ## The API
 
-First up you get back an array. If you don't know anything about the new Span<T> or Memory<T> types now would be a good time to go and get some in depth understanding of these types. Stephen Toub has a great post about this <!***************INSERT TOUB BLOG POST>here<***********/>. I am going to assume you understand those types, if you don't go and read that post.
+First up you get back an array. If you don't know anything about the new Span<T> or Memory<T> types now would be a good time to go and get some in depth understanding of these types. Stephen Toub has a great post about this [here](https://msdn.microsoft.com/en-us/magazine/mt814808.aspx). I am going to assume you understand those types, if you don't go and read that post.
 
 So we have an array, if we want to use sections or slices of that array we can put it inside a Span<T> or Memory<T> and if the method can only take an array we can use that as well (we could also use the older ArraySegment but we are going to ignore that for the newer types). So we have solid flexibility however, we need to ensure that the array is returned to the pool. Our lower level code must be the one returning the array because any method we pass the array into doesn't have any understanding of the lifetime of the array or where it came from.
 
@@ -104,12 +104,21 @@ return buffer;
 
 So here we take a spin lock for a short time, check if there is a free buffer in the bucket and if that slot is empty (we have never allocated for it yet) we will just create a new buffer.
 
+ There is nothing wrong with this method however you should be aware of a few things about this pool and why it may or may not be the best approach for your application.
 
+1. The max bucket size is fixed
+1. The high water mark for each buffer is fixed
+1. There are buckets of varying sizes
+1. Multiple pieces of code outside your control can use it in different ways
+1. It only provides Arrays with no solid return semantics
+1. There is no zeroing of data
+1. There is bucket stealing from up to 2 categories higher 
+1. Every array is a separate object per buffer, and all allocated independently
 
+There are two points I want you to consider here. One is that other pieces of code could be using the buffers in different ways. This is important because if some code is aging the buffers (holding them until they are say Gen2) and another piece of code is taking many buffers out quickly and then returning them and you are hitting that high watermark of 30 buffers you could end up generating a lot of Gen2 objects and may gain very little benefit from pooling.
 
- There is nothing wrong with this method however you should be aware of a few things about this pool and why it might not be the best approach for your application.
+The upside to the above problem is that if you have many parts of the system using the shared pool in a minimal way you will keep the total memory use lower than each having their own pool.
 
+The last point I want to make before we move onto other pools is the final bullet point. This means that for every array we have to allocate an object. This can be problematic for very small buffers, but also for fragmentation of the heap. The reason? Many applications of pooled buffers end up at some native API such as Sockets. When this happens the buffers end up being pinned, during this time they cannot be moved by the GC. If you have many small buffers spread out in your memory footprint that are being pinned often you can end up fragmenting your heap.
 
-
-
-## Enter IOwnedMemory<T>
+This is the end of part 2, in the next part we will take a quick look at MemoryPool<T> and then move onto "The slab allocator" which will show how some of the concerns of using the ArrayPool in high volume low latency scenarios can be improved.
